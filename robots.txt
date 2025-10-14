@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://panelverse.netlify.app/sitemap.xml
