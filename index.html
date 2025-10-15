@@ -1,369 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panel Verse | Automation Workflows | Web Development | AI Comics & Digital Storytelling</title>
-<meta name="description" content="Explore AI-powered comics, automation workflows, and immersive digital storytelling at Panel Verse. Subscribe for updates!">
-<meta name="keywords" content="AI Comics, Digital Storytelling, Web Comics, Automation Workflows,websites,wordpress,creative tools,newsletter,technology,innovation,Ai,automation,comics,digital storytelling,creative technology,Panel Verse,Automation agency,indian company,Ai, Panel Verse">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Verse | AI Workflows | Web Development | Digital Storytelling</title>
+    <meta name="keywords" content="AI automation, n8n workflows, custom web development, digital storytelling, AI comics, business automation, web design, creative technology, Panel Verse">
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- EmailJS for form handling -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
-<!-- Fonts & Icons -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
-
-<!-- Preload hero image for faster paint -->
-<link rel="preload" as="image" href="2.jpg">
-
-<style>
-  * { box-sizing: border-box; margin:0; padding:0; }
-  body { font-family:'Inter',sans-serif; background:#0b0b0f; color:#e6eef6; line-height:1.6; scroll-behavior:smooth; }
-  a { text-decoration:none; color:inherit; }
-
-  header {
-    position:sticky; top:0; z-index:1000;
-    background:#13131a; display:flex; justify-content:space-between; align-items:center;
-    padding:15px 40px; border-bottom:1px solid rgba(255,255,255,0.05);
-  }
-  header h1 { color:#7afcff; font-size:26px; font-weight:700; }
-  nav a { margin-left:25px; font-weight:600; transition:0.3s; }
-  nav a:hover { color:#5cdbe0; }
-
-  .hero {
-    position:relative;
-    background-image: image-set(
-      url('2.jpg') type('image/jpeg') 1x
-    );
-    background-position:center; background-size:cover; background-repeat:no-repeat;
-    height:70vh; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center;
-    will-change: transform;
-  }
-  .hero .overlay {
-    position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.3);
-  }
-  .hero .content { position:relative; z-index:1; max-width:900px; }
-  .hero h2 { font-size:40px; color:#7afcff; margin-bottom:20px; }
-  .hero p { font-size:18px; color:#fff; max-width:700px; margin:0 auto; }
-
-  section { padding:100px 20px; position:relative; }
-  section .overlay {
-    position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.55); z-index:0;
-  }
-  section .content {
-    position:relative; z-index:1; max-width:1100px; margin:0 auto; text-align:center;
-  }
-  section h3 { font-size:32px; color:#7afcff; margin-bottom:25px; }
-  section p { font-size:16px; margin-bottom:15px; }
-
-  #about { background:url('1.jpg') center/cover no-repeat; }
-  .about-grid {
-    display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; margin-top:40px;
-  }
-  .about-card {
-    background:rgba(19,19,26,0.85); border-radius:12px; padding:25px; text-align:center;
-    display:flex; flex-direction:column; align-items:center; transition:transform 0.3s;
-    box-shadow:0 0 10px rgba(0,0,0,0.4);
-    will-change: transform;
-  }
-  .about-card:hover { transform:translateY(-5px); }
-  .about-card i { font-size:28px; color:#7afcff; margin-bottom:15px; }
-
-  #services { background:url('3.jpg') center/cover no-repeat; }
-  .grid {
-    display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:30px; margin-top:40px;
-  }
-  .service-card {
-    background:rgba(19,19,26,0.85); border-radius:12px; padding:25px;
-    text-align:center; transition:transform 0.3s,box-shadow 0.3s; will-change: transform;
-  }
-  .service-card:hover { transform:translateY(-6px); box-shadow:0 0 12px rgba(122,252,255,0.4); }
-  .service-card i { font-size:36px; color:#7afcff; margin-bottom:20px; }
-
-  #latest { background:#101018; }
-  #latest img { max-width:100%; border-radius:12px; cursor:pointer; transition:transform 0.3s; will-change: transform; }
-  #latest img:hover { transform:scale(1.05); }
-
-  #newsletter {
-    background:url('5.avif') center/cover no-repeat; color:#fff; text-align:center;
-    display:flex; flex-direction:column; justify-content:center; align-items:center;
-    height:42vh; position:relative;
-  }
-  #newsletter .overlay {
-    position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.65); z-index:0;
-  }
-  #newsletter .content { position:relative; z-index:1; max-width:700px; }
-  .newsletter-form {
-    margin-top:25px; display:flex; justify-content:center; flex-wrap:wrap; gap:10px;
-  }
-  .newsletter-form input {
-    padding:12px; width:560px; border:none; border-radius:6px;
-    background:#1e1e1e; color:#e6eef6;
-  }
-  .newsletter-form button {
-    padding:12px 20px; border:none; border-radius:6px;
-    background:#7afcff; color:#0b0b0b; font-weight:700; cursor:pointer; transition:0.3s;
-  }
-  .newsletter-form button:hover { background:#5cdbe0; }
-
-  #contact { background:url('4.jpg') center/cover no-repeat; }
-  form { max-width:500px; margin:40px auto 0; display:flex; flex-direction:column; gap:15px; }
-  form input, form textarea {
-    padding:12px; border:none; border-radius:6px;
-    background:#1e1e1e; color:#e6eef6;
-  }
-  form button {
-    padding:14px; background:#7afcff; color:#0b0b0b; font-weight:700;
-    border:none; border-radius:8px; cursor:pointer; transition:0.3s;
-  }
-  form button:hover { background:#5cdbe0; }
-
-  footer {
-    text-align:center; padding:40px 20px;
-    font-size:13px; color:#9aa0a6;
-    border-top:1px solid rgba(255,255,255,0.1);
-  }
-  footer a { color:#7afcff; }
-
-  .modal { display:none; position:fixed; z-index:2000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.95); overflow-y:auto; padding:40px 20px; }
-  .modal-content { max-width:900px; margin:0 auto; position:relative; }
-  .close-btn { position:absolute; top:10px; right:10px; font-size:28px; color:#7afcff; cursor:pointer; }
-  .panel-card { background:#13131a; border-radius:12px; margin-bottom:30px; }
-  .panel-card img { width:100%; border-radius:12px 12px 0 0; }
-  .story-card { padding:15px 20px; background:#1e1e1e; border-radius:0 0 12px 12px; color:#e6eef6; font-size:15px; }
-
-  @media(max-width:768px){
-    header{ flex-direction:column; }
-    nav a{ margin:10px 0 0;padding:1px;font-size:small; }
-    .newsletter-form input{ width:340px; }
-    .hero .overlay, section .overlay, #newsletter .overlay { background:rgba(0,0,0,0.2); }
-  }
-</style>
-
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" type="image/png" sizes="192x192" href="/siteimage.png">
-
-</head>
-<body>
-
-<header>
-  <h1>Panel Verse</h1>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#latest">Comics</a>
-   <a href="https://techsavyblogs.onrender.com/">Blogs</a>
-    <a href="#newsletter">Newsletter</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<section class="hero">
-  <div class="overlay"></div>
-  <div class="content">
-    <h2>Automation, Comics & Digital Innovation</h2>
-    <p>Panel Verse merges creativity with technology — bringing you comics, automation workflows, and digital experiences that inspire and engage.</p>
-  </div>
-</section>
-
-<section id="about">
-  <div class="overlay"></div>
-  <div class="content">
-    <h3>About Panel Verse</h3>
-    <p>We are a creative-technology studio dedicated to transforming storytelling, automation, and design into one seamless universe.</p>
-    <div class="about-grid">
-      <div class="about-card"><i class="fa-solid fa-robot"></i><h4>Smart Automation</h4><p>We design AI-driven workflows that automate repetitive work so you can focus on creativity and growth.</p></div>
-      <div class="about-card"><i class="fa-solid fa-book-open"></i><h4>Storytelling with Impact</h4><p>From comics to visual stories, we build captivating worlds that connect emotionally with your audience.</p></div>
-      <div class="about-card"><i class="fa-solid fa-laptop-code"></i><h4>Digital Development</h4><p>Websites, tools, and creative dashboards built with elegance, speed, and storytelling at their heart.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="services">
-  <div class="overlay"></div>
-  <div class="content">
-    <h3>Our Services</h3>
-    <div class="grid">
-      <div class="service-card"><i class="fa-solid fa-bolt"></i><h4>Automation Workflows</h4><p>Streamline publishing, image generation, and distribution using custom N8N, AI, and API workflows.</p></div>
-      <div class="service-card"><i class="fa-solid fa-pen-nib"></i><h4>Comic Production</h4><p>AI-enhanced storytelling from script to panel — fully illustrated and dynamically optimized for web.</p></div>
-      <div class="service-card"><i class="fa-solid fa-globe"></i><h4>Website Design</h4><p>Responsive sites for artists, storytellers, and startups using modern technologies and visual storytelling.</p></div>
-      <div class="service-card"><i class="fa-solid fa-envelope-open-text"></i><h4>Newsletters & Outreach</h4><p>We craft newsletters that engage readers with your brand using automation and analytics.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="latest">
-  <div class="content">
-    <h3>Latest Comic</h3>
-    <img id="latest-cover" src="https://iili.io/KO8f7El.png" alt="Latest Comic Cover" loading="lazy">
-    <p style="color:#ffffff;">Click the cover to explore our newest story adventure!</p>
-  </div>
-</section>
-
-<section id="pricing" style="background:url('6.jpg') center/cover no-repeat; position:relative;">
-  <div class="overlay"></div>
-  <div class="content">
-    <h3>Our Pricing</h3>
-    <p style="color:#ffffff; max-width:700px; margin:0 auto 40px;">
-      Transparent and flexible pricing crafted for creators, businesses, and agencies.
-    </p>
-
-    <!-- CATEGORY: Website Design -->
-    <h4 style="color:#7afcff; font-size:24px; margin-bottom:20px;">Website Design & Development</h4>
-    <div class="grid">
-      <div class="service-card">
-        <h3 style="color:#7afcff;">Starter Site</h3>
-        <p>1–3 pages, responsive design, contact form, 1 week support</p>
-        <h2 style="color:#fff; margin-top:10px;">₹12,000</h2>
-      </div>
-      <div class="service-card">
-        <h3 style="color:#7afcff;">Professional</h3>
-        <p>Up to 6 pages, animations, SEO setup, email integration, form automation</p>
-        <h2 style="color:#fff; margin-top:10px;">₹25,000</h2>
-      </div>
-      <div class="service-card">
-        <h3 style="color:#7afcff;">Business Pro</h3>
-        <p>10+ pages, blog setup, automations, analytics, 1-month support</p>
-        <h2 style="color:#fff; margin-top:10px;">₹45,000–₹60,000</h2>
-      </div>
-    </div>
-    <p style="color:#ffffff; margin-top:15px;">
-      <b>Add-ons:</b> Domain + Hosting ₹2,000 | eCommerce ₹8,000 | Chatbot/Automation ₹5,000
-    </p>
-
-    <br><hr style="border:0; height:1px; background:rgba(255,255,255,0.08); margin:60px 0;"><br>
-
-    <!-- CATEGORY: Automation Workflows -->
-    <h4 style="color:#7afcff; font-size:24px; margin-bottom:20px;">Automation & AI Workflows (n8n)</h4>
-    <div class="grid">
-      <div class="service-card">
-        <h3 style="color:#7afcff;">Quick Automations</h3>
-        <p>Simple n8n workflows for repetitive tasks (e.g. sending form data, leads collection)</p>
-        <h2 style="color:#fff; margin-top:10px;">₹6,000–₹10,000</h2>
-      </div>
-      <div class="service-card">
-        <h3 style="color:#7afcff;">Smart Business Flow</h3>
-        <p>2–4 n8n workflows for social posting, newsletters, lead generation & reports</p>
-        <h2 style="color:#fff; margin-top:10px;">₹20,000–₹40,000</h2>
-      </div>
-      <div class="service-card">
-        <h3 style="color:#7afcff;">Full Automation Suite</h3>
-        <p>End-to-end n8n automation: website, CRM, email, visuals, analytics + 1-month monitoring</p>
-        <h2 style="color:#fff; margin-top:10px;">₹60,000–₹1,00,000</h2>
-      </div>
-    </div>
-    <p style="color:#ffffff; margin-top:15px;">
-      <b>Add-ons:</b> API Integration ₹5,000+ | Workflow Hosting ₹2,000/month
-    </p>
-
-    <br><hr style="border:0; height:1px; background:rgba(255,255,255,0.08); margin:60px 0;"><br>
-
-    <!-- CATEGORY: Visual & Marketing -->
-    <h4 style="color:#7afcff; font-size:24px; margin-bottom:20px;">Visual & Marketing Automations</h4>
-    <div class="grid">
-      <div class="service-card">
-        <h3 style="color:#7afcff;">Newsletter Setup</h3>
-        <p>Automated email templates + signup forms + scheduling</p>
-        <h2 style="color:#fff; margin-top:10px;">₹5,000</h2>
-      </div>
-      <div class="service-card">
-        <h3 style="color:#7afcff;">Comic / Visual Story</h3>
-        <p>Short AI comic (3–5 panels) designed for brand storytelling</p>
-        <h2 style="color:#fff; margin-top:10px;">₹5,000–₹10,000</h2>
-      </div>
-      <div class="service-card">
-        <h3 style="color:#7afcff;">Complete Marketing Suite</h3>
-        <p>Newsletter + visuals + auto-posting + analytics dashboard</p>
-        <h2 style="color:#fff; margin-top:10px;">₹20,000–₹40,000</h2>
-      </div>
-    </div>
-    <p style="color:#ffffff; margin-top:15px;">
-      <b>Add-ons:</b> Weekly Newsletter ₹2,500/week | AI Voice/Video Story ₹4,000–₹10,000
-    </p>
-
-    <br><hr style="border:0; height:1px; background:rgba(255,255,255,0.08); margin:60px 0;"><br>
-
-    <!-- CATEGORY: Retainer -->
-    <h4 style="color:#7afcff; font-size:24px; margin-bottom:20px;">Monthly Retainer (Optional)</h4>
-    <div class="grid">
-      <div class="service-card">
-        <h3 style="color:#7afcff;">Basic Maintenance</h3>
-        <p>Minor updates, fixes & uptime checks</p>
-        <h2 style="color:#fff; margin-top:10px;">₹4,000/month</h2>
-      </div>
-      <div class="service-card">
-        <h3 style="color:#7afcff;">Growth Retainer</h3>
-        <p>New pages, automations, content updates</p>
-        <h2 style="color:#fff; margin-top:10px;">₹10,000–₹20,000/month</h2>
-      </div>
-      <div class="service-card">
-        <h3 style="color:#7afcff;">Dedicated Support</h3>
-        <p>Full creative + technical management & monitoring</p>
-        <h2 style="color:#fff; margin-top:10px;">₹30,000–₹50,000/month</h2>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-<section id="newsletter">
-  <div class="overlay"></div>
-  <div class="content">
-    <h3>Subscribe to Our Newsletter</h3>
-    <p>Stay updated with the latest news<br> crafted and automation insights straight to your inbox.</p>
-    <form class="newsletter-form" id="newsletterForm">
-      <input type="email" name="email" placeholder="Enter your email" required>
-      <button type="submit">Subscribe</button>
-    </form>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="overlay"></div>
-  <div class="content">
-    <h3>Contact Us</h3>
-    <p>Have a project or want to collaborate? Let’s build something amazing together.</p>
-    <form id="contactForm">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </div>
-</section>
-
-<footer>
-  &copy; 2025 Panel Verse | Built by Rounak Dutta | <a href="mailto:rounak153d@gmail.com">rounak153d@gmail.com</a>
-</footer>
-
-<div id="comicModal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn" id="closeModal">&times;</span>
-    <div id="modal-panels"></div>
-  </div>
-</div>
-
-<!-- ✅ Fixed EmailJS Integration -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
-(function(){
-  emailjs.init({ publicKey: "WSEdSmJ2pg1JNUuHv" });
-})();
-
-// Modal functionality
-const images = [
-  "https://iili.io/KO8f7El.png",
-  "https://iili.io/KO8fN3B.png",
-  "https://iili.io/KO8qF99.png",
-  "https://iili.io/KO8qT8P.png",
-  "https://iili.io/KO8qkKl.png",
-  "https://iili.io/KO8qyDg.png",
-  "https://iili.io/KO8BIsf.png"
-];
-
-const stories = [
-`In the heart of the opulent palace, bathed in the soft glow of moonlight and countless lamps, Maharaja Rudra Singh stood tall.
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#4f46e5', // Indigo 600
+                        'secondary': '#facc15', // Amber 400
+                        'dark-bg': '#111827', // Gray 900
+                        'card-bg': '#1f2937', // Gray 800
+                    }
+                }
+            }
+        }
+        
+        // Data for the comic modal
+        const images = [
+            "https://iili.io/KO8f7El.png",
+            "https://iili.io/KO8fN3B.png",
+            "https://iili.io/KO8qF99.png",
+            "https://iili.io/KO8qT8P.png",
+            "https://iili.io/KO8qkKl.png",
+            "https://iili.io/KO8qyDg.png",
+            "https://iili.io/KO8BIsf.png"
+        ];
+        
+        const stories = [
+            `In the heart of the opulent palace, bathed in the soft glow of moonlight and countless lamps, Maharaja Rudra Singh stood tall.
 He held aloft the legendary "Eye of the Serpent," a magnificent emerald that pulsed with an ethereal green light.
 Courtiers, adorned in vibrant silks, whispered in awe, their gazes fixed on the radiant jewel.
 "This jewel," the Maharaja proclaimed, his voice resonating with pride, "is the soul of our kingdom, a gift from the gods."
@@ -375,7 +57,7 @@ It drew avarice, a hunger that lurked just beyond the reach of the lamplight.
 "A treasure beyond compare," murmured a courtier, unaware of the impending doom.
 Indeed, it was a treasure coveted by many, especially those who preferred the cloak of night.`,
 
-`The tranquil grandeur of the palace was shattered by dawn's harsh light.
+            `The tranquil grandeur of the palace was shattered by dawn's harsh light.
 The hall, once a vision of splendor, was now a scene of utter chaos.
 The velvet pedestal where the "Eye of the Serpent" had rested lay empty, a silk cloth crumpled beside it.
 Guards, their faces etched with frantic dismay, overturned tables and peered behind every ornate pillar.
@@ -387,7 +69,7 @@ In their hand, a faint green glow pulsed—the unmistakable light of the stolen 
 The thief was swift, a whisper in the wind, leaving behind only confusion and fear.
 The Maharaja's prized possession was now a distant, shimmering memory.`,
 
-`Raghav, the royal detective known for his keen mind, knelt by the now-cordoned-off pedestal.
+            `Raghav, the royal detective known for his keen mind, knelt by the now-cordoned-off pedestal.
 His practical attire stood in stark contrast to the palace's opulence, but his focus was absolute.
 He meticulously examined the stone, his fingers tracing a small, almost imperceptible symbol—a stylized cobra etched into the dust.
 "A curious mark," he murmured, his brow furrowed in deep thought.
@@ -399,7 +81,7 @@ He also noted a faint, unique boot print beside the symbol, an unexpected detail
 "Every serpent leaves a trail," he added, a glint of determination in his eyes.
 His quest had officially begun, the first clue clutched within his observations.`,
 
-`Days later, the bustling heart of the city—a vibrant Indian souk—pulsated with life.
+            `Days later, the bustling heart of the city—a vibrant Indian souk—pulsated with life.
 Raghav, now disguised in simple robes, moved through the throng, his gaze sharp and unwavering.
 The air was thick with the scent of spices and the chatter of merchants.
 Suddenly, his eyes narrowed. He spotted a hooded figure, similar in build to the palace intruder,
@@ -411,7 +93,7 @@ This was no mere coincidence; this was his quarry.
 The chase was on, but this time, in the labyrinthine alleys of the marketplace.
 He blended deeper into the crowd, a hunter preparing his move, unnoticed by his prey.`,
 
-`The chase ignited across the ancient, sun-baked terracotta rooftops of the city.
+            `The chase ignited across the ancient, sun-baked terracotta rooftops of the city.
 Raghav, shedding his disguise, moved with the agility of a panther, leaping effortlessly from one roof to another.
 His clothes billowed in the wind as he pursued the hooded thief, who scrambled frantically ahead.
 The thief's visible eye darted back, filled with a desperate, wild fear.
@@ -423,7 +105,7 @@ The palace, a distant sentinel on the horizon, seemed to urge him onward.
 This was it. The culmination of his hunt, high above the waking city.
 No escape now for the thief, for justice was swift and relentless.`,
 
-`Out of breath but resolute, Raghav finally cornered the thief in a dimly lit, cluttered hideout.
+            `Out of breath but resolute, Raghav finally cornered the thief in a dimly lit, cluttered hideout.
 The air was thick with dust, heavy with the scent of forgotten secrets.
 The thief, now unmasked, looked terrified, slumped amidst a chaotic collection of ancient artifacts and scrolls.
 Crudely drawn maps were strewn across a worn wooden table, hinting at a web of illicit dealings.
@@ -435,7 +117,7 @@ The thief said nothing, only trembled, caught in a net of their own making.
 This den of thievery, now exposed, was their downfall, but something felt incomplete.
 The Eye of the Serpent was recovered, yet a larger shadow lingered.`,
 
-`Raghav stood over the defeated thief, the "Eye of the Serpent" now secured firmly in his hand.
+            `Raghav stood over the defeated thief, the "Eye of the Serpent" now secured firmly in his hand.
 Its green light illuminated his determined face, a symbol of justice delivered.
 The thief, slumped against a dusty wall, looked up at Raghav, a mixture of fear and defiance in their eyes.
 But their gaze drifted past him, fixed on the far wall.
@@ -447,55 +129,660 @@ The thief merely smiled, a chilling, cryptic smirk.
 "The true master," they whispered, "always stays in the shadows."
 The cluttered hideout, though contained, now opened up to a far grander, more terrifying mystery.
 The quest for the Eye of the Serpent was not over; it had merely begun to reveal its true depths.`
-];
-const modal=document.getElementById("comicModal");
-const modalPanels=document.getElementById("modal-panels");
-const latestCover=document.getElementById("latest-cover");
-const closeModal=document.getElementById("closeModal");
+        ];
+        
+        // IMPORTANT FIX: Initialize EmailJS after the page and scripts have loaded.
+        // Replace "YOUR_EMAILJS_PUBLIC_KEY" with your actual key.
+        window.addEventListener('load', () => {
+             // We check if emailjs is defined before calling init()
+             if (typeof emailjs !== 'undefined' && emailjs.init) {
+                emailjs.init("WSEdSmJ2pg1JNUuHv");
+             } else {
+                console.error("EmailJS script not loaded correctly.");
+             }
+        });
 
-latestCover.onclick=()=>{
-  modal.style.display="block";
-  modalPanels.innerHTML="";
-  images.forEach((src,i)=>{
-    const panelCard=document.createElement("div");
-    panelCard.className="panel-card";
-    panelCard.innerHTML=`<img src="${src}" alt="comic panel ${i+1}" loading="lazy"><div class="story-card">${stories[i]}</div>`;
-    modalPanels.appendChild(panelCard);
-  });
-};
-closeModal.onclick=()=>modal.style.display="none";
-window.onclick=e=>{if(e.target==modal)modal.style.display="none";};
+    </script>
 
-// ✅ Working Contact Form
-document.getElementById("contactForm").addEventListener("submit",function(e){
-  e.preventDefault();
-  emailjs.sendForm("service_g8ace0g","template_myo5uf9",this)
-  .then(()=>{
-    alert("Message sent successfully!");
-    this.reset();
-  })
-  .catch((err)=>{
-    console.error(err);
-    alert("Failed to send message. Please try again.");
-  });
-});
+    <style>
+        .parallax-hero {
+            background-image: url('2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .text-shadow-custom {
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+        }
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.9); 
+        }
+        .modal-content {
+            margin: 5vh auto; /* Adjusted margin for better vertical centering on smaller screens */
+            padding: 20px;
+            width: 95%; /* Increased width for mobile */
+            max-width: 800px; /* Reduced max-width for better single panel focus */
+            max-height: 90vh;
+            overflow-y: auto;
+            background-color: #1f2937;
+            border-radius: 12px;
+        }
+        .panel-card {
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #374151;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            /* Ensured the panel is centered for single view */
+            width: 100%;
+        }
+        .panel-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        .story-card {
+            padding: 1.5rem;
+            color: #d1d5db;
+        }
+        .story-card p {
+            /* Ensures multi-line story text is preserved */
+            white-space: pre-line;
+        }
+        /* Message Box Styling */
+        #message-box {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            display: none;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+        }
+        .message-success {
+            background-color: #10b981; /* Emerald 500 */
+            color: white;
+        }
+        .message-error {
+            background-color: #ef4444; /* Red 500 */
+            color: white;
+        }
+    </style>
 
-// ✅ Working Newsletter Form
-document.getElementById("newsletterForm").addEventListener("submit",function(e){
-  e.preventDefault();
-  emailjs.sendForm("service_g8ace0g","template_9z9b07l",this)
-  .then(()=>{
-    alert("Subscribed successfully!");
-    this.reset();
-  })
-  .catch((err)=>{
-    console.error(err);
-    alert("Failed to subscribe. Please try again.");
-  });
-});
-</script>
+</head>
 
+<body class="bg-dark-bg text-gray-100 font-sans">
+
+    <!-- Message Box (Replaces alert()) -->
+    <div id="message-box" role="alert"></div>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-card-bg shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <span class="text-2xl font-extrabold text-primary">Panel Verse</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="#services" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                        <a href="#pricing" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Pricing</a>
+                        <a href="https://techsavyblogs.onrender.com" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Blogs</a>
+                        <a href="#comics" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Comics</a>
+                        <a href="#contact" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#services" class="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">Services</a>
+                <a href="#pricing" class="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">Pricing</a>
+                <a href="https://techsavyblogs.onrender.com" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Blogs</a>
+                <a href="#comics" class="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">Comics</a>
+                <a href="#contact" class="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Uses 2.jpg as a striking, parallax background) -->
+    <header id="home" class="parallax-hero border-b border-primary/30">
+        <div class="text-center bg-black/50 p-8 rounded-xl backdrop-blur-sm mx-4">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white text-shadow-custom mb-4">
+                The Future of Business Automation
+            </h1>
+            <p class="text-xl md:text-2xl text-secondary font-medium text-shadow-custom max-w-3xl mx-auto mb-8">
+                Custom Web Solutions, AI Workflows (n8n), and High-Impact Digital Storytelling.
+            </p>
+            <a href="#services" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-dark-bg bg-primary hover:bg-indigo-500 transition duration-300 transform hover:scale-105">
+                View Our Services <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Services/Features Section (Updated for new focus) -->
+    <section id="services" class="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl font-bold text-center mb-12 text-white">Our Core Services & Specializations</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <!-- Service Card 1: Website Design & Dev -->
+            <div class="rounded-xl overflow-hidden shadow-2xl bg-card-bg transition duration-300 hover:shadow-primary/50 hover:scale-[1.02]">
+                <img src="4.png" alt="Website Design and Development" class="w-full h-48 object-cover object-center" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1f2937/d1d5db?text=Website+Design';" loading="lazy">
+                <div class="p-6">
+                    <h3 class="text-2xl font-semibold text-primary mb-3">Custom Website Development</h3>
+                    <p class="text-gray-300">
+                        From **Starter Sites** to **Business Pro** platforms, we build fast, mobile-first websites tailored for your specific business goals, including eCommerce and SEO setup.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Service Card 2: Automation & AI Workflows (n8n) -->
+            <div class="rounded-xl overflow-hidden shadow-2xl bg-card-bg transition duration-300 hover:shadow-primary/50 hover:scale-[1.02]">
+                <img src="3.png" alt="Automation Workflow using n8n" class="w-full h-48 object-cover object-center" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1f2937/d1d5db?text=n8n+Automation';" loading="lazy">
+                <div class="p-6">
+                    <h3 class="text-2xl font-semibold text-primary mb-3">Automation & AI Workflows (n8n)</h3>
+                    <p class="text-gray-300">
+                        Streamline repetitive tasks using **n8n** and AI. Implement quick automations for lead generation, reporting, and smart business flows to save time and resource costs.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Service Card 3: Visual & Marketing Automations -->
+            <div class="rounded-xl overflow-hidden shadow-2xl bg-card-bg transition duration-300 hover:shadow-primary/50 hover:scale-[1.02]">
+                <img src="1.png" alt="AI Comics and Visual Storytelling" class="w-full h-48 object-cover object-center" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1f2937/d1d5db?text=Visual+Marketing+AI';" loading="lazy">
+                <div class="p-6">
+                    <h3 class="text-2xl font-semibold text-primary mb-3">Visual & Marketing Automations</h3>
+                    <p class="text-gray-300">
+                        Enhance your brand with automated **AI comic panels**, newsletter setups, and complete marketing suites to ensure consistent, high-impact visual storytelling across all platforms.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- NEW DETAILED PRICING SECTION -->
+    <section id="pricing" class="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl font-bold text-center mb-4 text-white">Transparent & Flexible Pricing</h2>
+        <p class="text-xl text-center text-gray-400 mb-12">
+            Affordable packages crafted for creators and businesses in India and globally. (Conversion Rate: ₹83 ≈ $1 USD)
+        </p>
+
+        <!-- Pricing Categories Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            
+            <!-- Column 1: Website Design & Automation -->
+            <div>
+                <!-- WEBSITE DESIGN & DEVELOPMENT -->
+                <div class="bg-card-bg p-6 rounded-xl shadow-xl border-t-4 border-primary mb-10">
+                    <h3 class="text-3xl font-bold text-white mb-6 flex items-center"><i class="fas fa-globe mr-3 text-primary"></i> Website Design & Development</h3>
+
+                    <!-- Tier 1: Starter Site -->
+                    <div class="flex justify-between items-start py-4 border-b border-gray-700">
+                        <div class="flex-1 pr-4">
+                            <p class="text-xl font-semibold text-white">Starter Site</p>
+                            <p class="text-sm text-gray-400">1–3 pages, responsive design, contact form, 1 week support.</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl font-extrabold text-primary">₹2,000</p>
+                            <p class="text-xs text-gray-500">~ $24 USD</p>
+                        </div>
+                    </div>
+
+                    <!-- Tier 2: Professional -->
+                    <div class="flex justify-between items-start py-4 border-b border-gray-700">
+                        <div class="flex-1 pr-4">
+                            <p class="text-xl font-semibold text-white">Professional</p>
+                            <p class="text-sm text-gray-400">Up to 6 pages, animations, SEO setup, email integration, form automation.</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl font-extrabold text-primary">₹25,000</p>
+                            <p class="text-xs text-gray-500">~ $301 USD</p>
+                        </div>
+                    </div>
+
+                    <!-- Tier 3: Business Pro -->
+                    <div class="flex justify-between items-start py-4">
+                        <div class="flex-1 pr-4">
+                            <p class="text-xl font-semibold text-white">Business Pro</p>
+                            <p class="text-sm text-gray-400">10+ pages, blog setup, automations, analytics, 1-month support.</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl font-extrabold text-primary">₹45,000–₹60,000</p>
+                            <p class="text-xs text-gray-500">~ $542–$723 USD</p>
+                        </div>
+                    </div>
+
+                    <h4 class="text-lg font-semibold text-secondary mt-6 mb-3 border-t border-gray-700 pt-4">Add-Ons:</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex justify-between text-sm"><span class="font-medium">Domain + Hosting</span> <span class="text-primary font-semibold">₹2,000 (~ $24)</span></li>
+                        <li class="flex justify-between text-sm"><span class="font-medium">E-commerce Integration</span> <span class="text-primary font-semibold">₹8,000 (~ $96)</span></li>
+                        <li class="flex justify-between text-sm"><span class="font-medium">Chatbot/Automation Setup</span> <span class="text-primary font-semibold">₹5,000 (~ $60)</span></li>
+                    </ul>
+                </div>
+
+                <!-- AUTOMATION & AI WORKFLOWS (n8n) -->
+                <div class="bg-card-bg p-6 rounded-xl shadow-xl border-t-4 border-primary">
+                    <h3 class="text-3xl font-bold text-white mb-6 flex items-center"><i class="fas fa-robot mr-3 text-primary"></i> Automation & AI Workflows (n8n)</h3>
+
+                    <!-- Tier 1: Quick Automations -->
+                    <div class="flex justify-between items-start py-4 border-b border-gray-700">
+                        <div class="flex-1 pr-4">
+                            <p class="text-xl font-semibold text-white">Quick Automations</p>
+                            <p class="text-sm text-gray-400">Simple n8n workflows for repetitive tasks (e.g., sending form data, leads collection).</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl font-extrabold text-primary">₹6,000–₹10,000</p>
+                            <p class="text-xs text-gray-500">~ $72–$120 USD</p>
+                        </div>
+                    </div>
+
+                    <!-- Tier 2: Smart Business Flow -->
+                    <div class="flex justify-between items-start py-4 border-b border-gray-700">
+                        <div class="flex-1 pr-4">
+                            <p class="text-xl font-semibold text-white">Smart Business Flow</p>
+                            <p class="text-sm text-gray-400">2–4 n8n workflows for social posting, newsletters, lead generation & reports.</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl font-extrabold text-primary">₹20,000–₹40,000</p>
+                            <p class="text-xs text-gray-500">~ $241–$482 USD</p>
+                        </div>
+                    </div>
+
+                    <!-- Tier 3: Full Automation Suite -->
+                    <div class="flex justify-between items-start py-4">
+                        <div class="flex-1 pr-4">
+                            <p class="text-xl font-semibold text-white">Full Automation Suite</p>
+                            <p class="text-sm text-gray-400">End-to-end n8n automation: website, CRM, email, visuals, analytics + 1-month monitoring.</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl font-extrabold text-primary">₹60,000–₹1,00,000</p>
+                            <p class="text-xs text-gray-500">~ $723–$1,205 USD</p>
+                        </div>
+                    </div>
+                    
+                    <h4 class="text-lg font-semibold text-secondary mt-6 mb-3 border-t border-gray-700 pt-4">Add-Ons:</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex justify-between text-sm"><span class="font-medium">API Integration (Complex)</span> <span class="text-primary font-semibold">₹5,000+ (~ $60+)</span></li>
+                        <li class="flex justify-between text-sm"><span class="font-medium">Workflow Hosting & Maintenance</span> <span class="text-primary font-semibold">₹2,000/month (~ $24/mo)</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Column 2: Visual/Marketing & Retainer -->
+            <div>
+                <!-- VISUAL & MARKETING AUTOMATIONS -->
+                <div class="bg-card-bg p-6 rounded-xl shadow-xl border-t-4 border-secondary mb-10">
+                    <h3 class="text-3xl font-bold text-white mb-6 flex items-center"><i class="fas fa-palette mr-3 text-secondary"></i> Visual & Marketing Automations</h3>
+
+                    <!-- Tier 1: Newsletter Setup -->
+                    <div class="flex justify-between items-start py-4 border-b border-gray-700">
+                        <div class="flex-1 pr-4">
+                            <p class="text-xl font-semibold text-white">Newsletter Setup</p>
+                            <p class="text-sm text-gray-400">Automated email templates + signup forms + scheduling.</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl font-extrabold text-secondary">₹5,000</p>
+                            <p class="text-xs text-gray-500">~ $60 USD</p>
+                        </div>
+                    </div>
+
+                    <!-- Tier 2: Comic / Visual Story -->
+                    <div class="flex justify-between items-start py-4 border-b border-gray-700">
+                        <div class="flex-1 pr-4">
+                            <p class="text-xl font-semibold text-white">AI Comic / Visual Story</p>
+                            <p class="text-sm text-gray-400">Short AI comic (3–5 panels) designed for brand storytelling.</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl font-extrabold text-secondary">₹5,000–₹10,000</p>
+                            <p class="text-xs text-gray-500">~ $60–$120 USD</p>
+                        </div>
+                    </div>
+
+                    <!-- Tier 3: Complete Marketing Suite -->
+                    <div class="flex justify-between items-start py-4">
+                        <div class="flex-1 pr-4">
+                            <p class="text-xl font-semibold text-white">Complete Marketing Suite</p>
+                            <p class="text-sm text-gray-400">Newsletter + visuals + auto-posting + analytics dashboard.</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl font-extrabold text-secondary">₹20,000–₹40,000</p>
+                            <p class="text-xs text-gray-500">~ $241–$482 USD</p>
+                        </div>
+                    </div>
+
+                    <h4 class="text-lg font-semibold text-primary mt-6 mb-3 border-t border-gray-700 pt-4">Add-Ons:</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex justify-between text-sm"><span class="font-medium">Weekly Newsletter Service</span> <span class="text-secondary font-semibold">₹2,500/week (~ $30/week)</span></li>
+                        <li class="flex justify-between text-sm"><span class="font-medium">AI Voice/Video Story</span> <span class="text-secondary font-semibold">₹4,000–₹10,000 (~ $48–$120)</span></li>
+                    </ul>
+                </div>
+
+                <!-- MONTHLY RETAINER (OPTIONAL) -->
+                <div class="bg-card-bg p-6 rounded-xl shadow-xl border-t-4 border-secondary">
+                    <h3 class="text-3xl font-bold text-white mb-6 flex items-center"><i class="fas fa-sync-alt mr-3 text-secondary"></i> Monthly Retainer (Support & Growth)</h3>
+
+                    <!-- Tier 1: Basic Maintenance -->
+                    <div class="flex justify-between items-start py-4 border-b border-gray-700">
+                        <div class="flex-1 pr-4">
+                            <p class="text-xl font-semibold text-white">Basic Maintenance</p>
+                            <p class="text-sm text-gray-400">Minor updates, fixes, and uptime checks for peace of mind.</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl font-extrabold text-secondary">₹4,000/month</p>
+                            <p class="text-xs text-gray-500">~ $48/month</p>
+                        </div>
+                    </div>
+
+                    <!-- Tier 2: Growth Retainer -->
+                    <div class="flex justify-between items-start py-4 border-b border-gray-700">
+                        <div class="flex-1 pr-4">
+                            <p class="text-xl font-semibold text-white">Growth Retainer</p>
+                            <p class="text-sm text-gray-400">New pages, automation enhancements, and dedicated content updates.</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl font-extrabold text-secondary">₹10,000–₹20,000/month</p>
+                            <p class="text-xs text-gray-500">~ $120–$241/month</p>
+                        </div>
+                    </div>
+
+                    <!-- Tier 3: Dedicated Support -->
+                    <div class="flex justify-between items-start py-4">
+                        <div class="flex-1 pr-4">
+                            <p class="text-xl font-semibold text-white">Dedicated Support</p>
+                            <p class="text-sm text-gray-400">Full creative + technical management, continuous monitoring, and optimization.</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl font-extrabold text-secondary">₹30,000–₹50,000/month</p>
+                            <p class="text-xs text-gray-500">~ $361–$602/month</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-12">
+             <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-full shadow-lg text-dark-bg bg-primary hover:bg-indigo-500 transition duration-300 transform hover:scale-105">
+                Ready to Start? Get a Custom Quote <i class="fas fa-hand-point-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Latest Comic Cover CTA (Uses 5.jpg) -->
+    <section id="comics" class="bg-gray-800 py-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-10">
+            <div class="lg:w-1/2 text-center lg:text-left">
+                <h2 class="text-4xl font-bold text-white mb-4">See Our Work: AI Visual Storytelling</h2>
+                <p class="text-gray-300 mb-6 max-w-xl mx-auto lg:mx-0">
+                    Experience a short visual story, an example of how we use AI to create impactful **brand narratives** for our clients.
+                </p>
+                <button id="latest-cover" class="bg-secondary text-dark-bg font-bold py-3 px-8 rounded-full shadow-lg hover:bg-yellow-300 transition duration-300 transform hover:scale-105">
+                    View Full Visual Panel <i class="fas fa-book-open ml-2"></i>
+                </button>
+            </div>
+            <div class="lg:w-1/3 relative group rounded-xl shadow-2xl overflow-hidden">
+                <img id="latest-cover-img" src="6.jpg" alt="Latest Comic Cover" class="w-full h-auto object-cover transition duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/400x550/1f2937/d1d5db?text=Visual+Story+Example';" loading="lazy">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                    <span class="text-white text-lg font-semibold border-2 border-white rounded-full p-3 " style="display: none;">Click to View</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Newsletter and Contact Section (Uses 6.jpg as section background) -->
+    <section id="contact" class="py-16 md:py-24" style="background-image: url('5.avif'); background-size: cover; background-position: center;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 backdrop-blur-sm bg-dark-bg/80 p-8 rounded-xl shadow-2xl">
+            <h2 class="text-4xl font-bold text-center text-white mb-10">Let's Build Your Automation Strategy</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                
+                <!-- Contact Form -->
+                <div>
+                    <h3 class="text-3xl font-semibold text-primary mb-4">Send a Direct Inquiry</h3>
+                    <form id="contactForm" class="space-y-4">
+                        <input type="hidden" name="contact_number">
+                        <div>
+                            <input type="text" name="user_name" placeholder="Your Name" required class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-primary focus:border-primary text-white">
+                        </div>
+                        <div>
+                            <input type="email" name="user_email" placeholder="Your Email" required class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-primary focus:border-primary text-white">
+                        </div>
+                        <div>
+                            <textarea name="message" rows="4" placeholder="I am interested in..." required class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-primary focus:border-primary text-white"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-white font-bold py-3 rounded-lg shadow-md hover:bg-indigo-500 transition duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Newsletter Form -->
+                <div>
+                    <h3 class="text-3xl font-semibold text-primary mb-4">Subscribe to Our Newsletter</h3>
+                    <p class="text-gray-300 mb-6">
+                        Get the latest **n8n workflow tips**, AI visual updates, and case studies delivered monthly.
+                    </p>
+                    <form id="newsletterForm" class="space-y-4">
+                        <div>
+                            <input type="email" name="newsletter_email" placeholder="Enter Your Email" required class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-secondary focus:border-secondary text-white">
+                        </div>
+                        <button type="submit" class="w-full bg-secondary text-dark-bg font-bold py-3 rounded-lg shadow-md hover:bg-yellow-300 transition duration-300">
+                            Subscribe Now
+                        </button>
+                    </form>
+                    
+                    <div class="mt-8 pt-6 border-t border-gray-700">
+                        <h4 class="text-xl font-semibold text-white mb-3">Connect With Us</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-twitter text-2xl"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-instagram text-2xl"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-linkedin-in text-2xl"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-card-bg py-8 border-t border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400">
+            <p>&copy; 2025 Panel Verse. All rights reserved. | Built with automation and creative technology.</p>
+        </div>
+    </footer>
+
+    <!-- Modal for Comic Panels (Updated for single-panel list view with navigation) -->
+    <div id="comicModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-white">AI Visual Story</h2> <!-- Updated Title -->
+                <button id="closeModal" class="text-gray-400 hover:text-white text-4xl leading-none">
+                    &times;
+                </button>
+            </div>
+
+            <!-- Navigation Controls -->
+            <div class="flex justify-between items-center mb-4 p-2 bg-gray-700 rounded-lg">
+                <button id="prevPanel" class="px-4 py-2 bg-primary hover:bg-indigo-500 rounded-full font-semibold disabled:opacity-50 transition duration-200" disabled>
+                    <i class="fas fa-chevron-left mr-2"></i> Previous
+                </button>
+                <span id="panelCounter" class="text-lg font-medium text-white">Panel 1 of 7</span>
+                <button id="nextPanel" class="px-4 py-2 bg-primary hover:bg-indigo-500 rounded-full font-semibold disabled:opacity-50 transition duration-200">
+                    Next <i class="fas fa-chevron-right ml-2"></i>
+                </button>
+            </div>
+
+            <!-- Panel Container -->
+            <div id="modal-panels" class="flex flex-col items-center">
+                <!-- Comic panels will be injected and controlled by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Utility function to show custom messages (replaces alert())
+        function showMessage(message, type = 'success') {
+            const msgBox = document.getElementById('message-box');
+            msgBox.textContent = message;
+            msgBox.className = ''; // Reset classes
+            msgBox.classList.add(type === 'success' ? 'message-success' : 'message-error');
+            msgBox.style.display = 'block';
+            
+            // Trigger transition by setting opacity
+            setTimeout(() => { msgBox.style.opacity = '1'; }, 10); 
+
+            // Hide after 5 seconds
+            setTimeout(() => {
+                msgBox.style.opacity = '0';
+                setTimeout(() => { msgBox.style.display = 'none'; }, 300); // Wait for transition
+            }, 5000);
+        }
+
+        // --- Navigation Logic ---
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- Modal Logic (Comic Viewer - UPDATED) ---
+        let currentPanelIndex = 0;
+        const totalPanels = images.length;
+        
+        const modal = document.getElementById("comicModal");
+        const modalPanels = document.getElementById("modal-panels");
+        const latestCover = document.getElementById("latest-cover");
+        const closeModal = document.getElementById("closeModal");
+        
+        const prevPanel = document.getElementById("prevPanel");
+        const nextPanel = document.getElementById("nextPanel");
+        const panelCounter = document.getElementById("panelCounter");
+
+        function renderPanel(index) {
+            // Safety check
+            if (index < 0 || index >= totalPanels) return;
+
+            // Hide all panels
+            document.querySelectorAll('.panel-card').forEach(panel => {
+                panel.classList.add('hidden');
+            });
+
+            // Show the current panel
+            const currentPanel = document.getElementById(`comic-panel-${index}`);
+            if (currentPanel) {
+                currentPanel.classList.remove('hidden');
+                // Scroll to the top of the modal content when panel changes
+                modal.querySelector('.modal-content').scrollTop = 0;
+            }
+
+            // Update counter
+            currentPanelIndex = index;
+            panelCounter.textContent = `Panel ${currentPanelIndex + 1} of ${totalPanels}`;
+
+            // Update buttons
+            prevPanel.disabled = currentPanelIndex === 0;
+            nextPanel.disabled = currentPanelIndex === totalPanels - 1;
+        }
+
+        function initializePanels() {
+             // 1. Clear and populate panels only if they haven't been created yet
+            if (modalPanels.children.length === 0) {
+                images.forEach((src, i) => {
+                    const panelCard = document.createElement("div");
+                    // Single-column, max-width centered, initially hidden
+                    panelCard.className = "panel-card w-full max-w-xl mx-auto hidden"; 
+                    panelCard.id = `comic-panel-${i}`;
+                    panelCard.innerHTML = `
+                        <img src="${src}" alt="comic panel ${i + 1}" loading="lazy" class="w-full h-auto object-cover rounded-t-xl">
+                        <div class="p-6 story-card text-left">
+                            <h3 class="text-xl font-bold text-secondary mb-2">Panel ${i + 1} - The Eye of the Serpent</h3>
+                            <p class="text-gray-300 whitespace-pre-line">${stories[i].trim()}</p>
+                        </div>
+                    `;
+                    modalPanels.appendChild(panelCard);
+                });
+            }
+        }
+
+        latestCover.onclick = () => {
+            initializePanels();
+            currentPanelIndex = 0;
+            renderPanel(currentPanelIndex);
+            modal.style.display = "block";
+        };
+
+        // Add navigation listeners
+        prevPanel.addEventListener('click', () => {
+            if (currentPanelIndex > 0) {
+                renderPanel(currentPanelIndex - 1);
+            }
+        });
+
+        nextPanel.addEventListener('click', () => {
+            if (currentPanelIndex < totalPanels - 1) {
+                renderPanel(currentPanelIndex + 1);
+            }
+        });
+
+        closeModal.onclick = () => modal.style.display = "none";
+        window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+
+        // --- Form Submission Logic (using EmailJS) ---
+
+        // Contact Form
+        document.getElementById("contactForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            // Assuming your original service and template IDs are correct
+            emailjs.sendForm("service_g8ace0g", "template_myo5uf9", this)
+            .then(() => {
+                showMessage("Message sent successfully! We'll be in touch soon.", 'success');
+                this.reset();
+            })
+            .catch((err) => {
+                console.error("EmailJS Error (Contact Form):", err);
+                showMessage("Failed to send message. Please check your console for errors.", 'error');
+            });
+        });
+
+        // Newsletter Form
+        document.getElementById("newsletterForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            // Assuming your original service and template IDs are correct
+            emailjs.sendForm("service_g8ace0g", "template_3puz0z9", this)
+            .then(() => {
+                showMessage("Thank you for subscribing to our newsletter!", 'success');
+                this.reset();
+            })
+            .catch((err) => {
+                console.error("EmailJS Error (Newsletter Form):", err);
+                showMessage("Subscription failed. Please try again later.", 'error');
+            });
+        });
+    </script>
 </body>
 </html>
-
-
