@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PANELVERSE | High-Converting Landing Pages, AI Creatives & Automation Systems</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cinzel:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="icon" type="image/png" href="siteimage.png">
+    <link rel="apple-touch-icon" href="siteimage.png">
+
+    
+    <!-- TailWind Custom Config for Premium Palette -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                    },
+                    colors: {
+                        brandBg: '#050507',
+                        brandCardBg: '#0b0b0f',
+                        brandBorder: '#1c1c24',
+                        gold: {
+                            50: '#fdf9eb',
+                            100: '#fbf0cd',
+                            200: '#f6df9a',
+                            300: '#f0c75d',
+                            400: '#e9af31',
+                            500: '#df971a',
+                            600: '#c07512',
+                            700: '#9e5512',
+                            800: '#804213',
+                            900: '#693613',
+                            accent: '#d4af37'
+                        },
+                        neonRed: {
+                            glow: '#f95738',
+                            dark: '#e23e2a',
+                        }
+                    },
+                    boxShadow: {
+                        'gold-glow': '0 0 25px rgba(212, 175, 55, 0.15)',
+                        'red-glow': '0 0 25px rgba(249, 87, 56, 0.2)',
+                        'card-glow': '0 10px 30px -10px rgba(0, 0, 0, 0.7)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Premium Background Gradients and Effects */
+        body {
+            background-color: #050507;
+            color: #f3f4f6;
+        }
+
+        .premium-radial-glow {
+            background: radial-gradient(circle at 50% -20%, rgba(212, 175, 55, 0.08) 0%, rgba(249, 87, 56, 0.05) 40%, rgba(5, 5, 7, 0) 70%);
+        }
+
+        .premium-glow-card {
+            background: linear-gradient(145deg, #0e0e12 0%, #060608 100%);
+            border: 1px solid rgba(212, 175, 55, 0.08);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .premium-glow-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 40px -10px rgba(212, 175, 55, 0.12);
+            transform: translateY(-4px);
+        }
+
+        /* Glowing Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050507;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1c1c24;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e9af31;
+        }
+
+        /* Custom Text Animation / Pulsing Keyframe */
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; filter: drop-shadow(0 0 8px rgba(249, 87, 56, 0.6)); }
+        }
+        .animate-pulse-glow {
+            animation: pulseGlow 3s infinite;
+        }
+
+        @keyframes dataPulse {
+            0% { left: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { left: 100%; opacity: 0; }
+        }
+        .data-pulse-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 80px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent);
+            animation: dataPulse 4s infinite linear;
+        }
+
+        /* Responsive Utility */
+        @media (max-width: 380px) {
+            .hero-badge-text { font-size: 0.6rem; }
+        }
+
+        /* ===== Scroll Animations ===== */
+        [data-aos] {
+            opacity: 0;
+            transition-property: opacity, transform;
+            transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        [data-aos].aos-visible {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+
+        [data-aos="fade-up"]    { transform: translateY(40px); }
+        [data-aos="fade-down"]  { transform: translateY(-40px); }
+        [data-aos="fade-left"]  { transform: translateX(40px); }
+        [data-aos="fade-right"] { transform: translateX(-40px); }
+        [data-aos="scale-up"]   { transform: scale(0.85); }
+        [data-aos="fade-in"]    { transform: none; }
+
+        /* Hero entrance (on page load) */
+        .hero-entrance > * {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .hero-entrance > :nth-child(1) { animation-delay: 0.1s; }
+        .hero-entrance > :nth-child(2) { animation-delay: 0.2s; }
+        .hero-entrance > :nth-child(3) { animation-delay: 0.3s; }
+        .hero-entrance > :nth-child(4) { animation-delay: 0.4s; }
+        .hero-entrance > :nth-child(5) { animation-delay: 0.5s; }
+        .hero-entrance > :nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes heroReveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Fade-in-up for fixed elements (WhatsApp btn) */
+        .animate-fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: heroReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* WhatsApp bounce */
+        .wa-bounce {
+            animation: waBounce 2s ease-in-out infinite;
+        }
+        @keyframes waBounce {
+            0%, 100% { transform: translateY(0); }
+            25% { transform: translateY(-6px); }
+            50% { transform: translateY(0); }
+            75% { transform: translateY(-3px); }
+        }
+
+        /* Hover micro-animations */
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px -12px rgba(212, 175, 55, 0.15);
+        }
+
+        /* Stagger children container */
+        .aos-stagger > [data-aos] {
+            transition-duration: 0.5s;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-brandBg/80 backdrop-blur-md border-b border-white/5 transition-all duration-300" id="mainHeader" data-aos="fade-down" data-aos-delay="0" data-aos-duration="400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-2 group">
+                    <span class="font-serif text-2xl font-bold tracking-[0.2em] text-white group-hover:text-gold-400 transition-colors">
+                        PANEL<span class="text-gold-accent">VERSE</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-sm font-medium tracking-wide text-zinc-300 hover:text-gold-400 transition-colors">Home</a>
+                    <a href="#services" class="text-sm font-medium tracking-wide text-zinc-300 hover:text-gold-400 transition-colors">Services</a>
+                    <a href="#process" class="text-sm font-medium tracking-wide text-zinc-300 hover:text-gold-400 transition-colors">Process</a>
+                    <a href="#contact" class="text-sm font-medium tracking-wide text-zinc-300 hover:text-gold-400 transition-colors">Contact</a>
+                </nav>
+
+                <!-- CTA Button (Desktop) -->
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="#contact" class="relative group overflow-hidden rounded-full p-[1px] focus:outline-none">
+                        <span class="absolute inset-0 bg-gradient-to-r from-neonRed-glow to-gold-400 rounded-full"></span>
+                        <span class="relative block px-6 py-2.5 rounded-full bg-brandBg text-sm font-medium text-white transition-all duration-300 group-hover:bg-transparent group-hover:text-brandBg">
+                            Get Free Proposal
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden text-zinc-400 hover:text-white focus:outline-none" aria-label="Toggle Menu">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 w-full bg-brandCardBg border-b border-brandBorder px-4 py-6 space-y-4">
+            <a href="#home" class="block text-base font-medium text-zinc-300 hover:text-gold-400 transition-colors mobile-link">Home</a>
+            <a href="#services" class="block text-base font-medium text-zinc-300 hover:text-gold-400 transition-colors mobile-link">Services</a>
+            <a href="#process" class="block text-base font-medium text-zinc-300 hover:text-gold-400 transition-colors mobile-link">Process</a>
+            <a href="#contact" class="block text-base font-medium text-zinc-300 hover:text-gold-400 transition-colors mobile-link">Contact</a>
+            <div class="pt-4 border-t border-white/5">
+                <a href="#contact" class="block w-full text-center bg-gradient-to-r from-neonRed-glow to-gold-400 hover:opacity-90 text-brandBg font-bold py-3 px-4 rounded-lg mobile-link">
+                    Get Free Proposal
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-28 pb-20 sm:pt-32 sm:pb-24 md:pt-40 md:pb-36 overflow-hidden min-h-screen flex items-center">
+        <!-- Background Video -->
+        <div class="absolute inset-0 w-full h-full pointer-events-none" data-aos="fade-in" data-aos-duration="1200">
+            <video autoplay muted loop playsinline class="w-full h-full object-cover">
+                <source src="https://res.cloudinary.com/dadofd9d2/video/upload/v1780040043/AQN6VZ0yxhZytrVtDt97y4ZQxCigNQ0YrQ4hOJxj6twCm6OaQNC7UX7HnfXslbYLt5Vn-fZEaJgz2v8jreDgQTgo3YpNLvvn1ntl4Is.mp4_vds2tu.mp4" type="video/mp4">
+            </video>
+            <!-- Dark overlay for readability -->
+            <div class="absolute inset-0 bg-brandBg/60"></div>
+        </div>
+        <!-- Floating Ambient Background Lights -->
+        <div class="hidden lg:block absolute top-[20%] left-[10%] w-[350px] h-[350px] bg-neonRed-glow/5 rounded-full blur-[100px] pointer-events-none z-10" data-aos="fade-in" data-aos-delay="300" data-aos-duration="1000"></div>
+        <div class="hidden lg:block absolute top-[40%] right-[5%] w-[400px] h-[400px] bg-gold-accent/5 rounded-full blur-[120px] pointer-events-none z-10" data-aos="fade-in" data-aos-delay="500" data-aos-duration="1000"></div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20 hero-entrance">
+            <div class="space-y-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neonRed-glow/10 border border-neonRed-glow/30" data-aos="fade-up">
+                    <span class="w-1.5 h-1.5 rounded-full bg-neonRed-glow animate-pulse"></span>
+                    <span class="text-xs font-semibold tracking-wider uppercase text-neonRed-glow hero-badge-text">Growth Systems That Deliver Results</span>
+                </div>
+
+                <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] text-white" data-aos="fade-up">
+                    We Build Landing Pages, <br class="hidden sm:inline" />
+                    AI Creatives & <span class="bg-gradient-to-r from-gold-300 via-gold-accent to-neonRed-glow bg-clip-text text-transparent">Automation Systems</span> That Generate Leads
+                </h1>
+
+                <p class="text-sm sm:text-base md:text-lg text-white leading-relaxed max-w-2xl mx-auto" data-aos="fade-up">
+                    Panelverse helps businesses grow through high-converting landing pages, modern websites, AI-powered ad creatives, email marketing systems, and smart workflow automations designed for performance.
+                </p>
+
+                <div class="text-sm text-white italic flex items-center gap-2 justify-center" data-aos="fade-up">
+                    <i data-lucide="check-circle" class="w-4 h-4 text-gold-accent"></i>
+                    Optimized for campaigns across Google Ads, Meta Ads, Bing Ads, and social channels.
+                </div>
+
+                <!-- CTA Actions -->
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4" data-aos="fade-up">
+                    <a href="#contact" class="flex items-center justify-center gap-2 bg-gradient-to-r from-neonRed-dark to-neonRed-glow hover:opacity-90 transition-all duration-300 text-white font-semibold py-4 px-8 rounded-lg shadow-red-glow">
+                        <span>Get Free Proposal</span>
+                        <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#services" class="flex items-center justify-center gap-2 border border-zinc-700 hover:border-gold-accent hover:bg-white/5 transition-all duration-300 text-zinc-300 hover:text-white font-semibold py-4 px-8 rounded-lg">
+                        <span>View Services</span>
+                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </a>
+                </div>
+
+                <!-- Trust Checkpoints -->
+                <div class="pt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 border-t border-white/5 mx-auto" data-aos="fade-up">
+                    <div class="flex items-center gap-2 text-white text-sm">
+                        <i data-lucide="check" class="w-4 h-4 text-neonRed-glow"></i>
+                        <span>Fast Delivery</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-white text-sm">
+                        <i data-lucide="check" class="w-4 h-4 text-neonRed-glow"></i>
+                        <span>Mobile Optimized</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-white text-sm">
+                        <i data-lucide="check" class="w-4 h-4 text-neonRed-glow"></i>
+                        <span>Conversion-Focused Systems</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-white text-sm">
+                        <i data-lucide="check" class="w-4 h-4 text-neonRed-glow"></i>
+                        <span>Built for Growth</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Metrics Section -->
+    <section class="py-12 bg-zinc-950 border-y border-zinc-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+                <!-- Metric 1 -->
+                <div class="flex items-center gap-4 p-4 rounded-xl bg-brandBg/60 border border-white/5" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-12 h-12 rounded-lg bg-gold-accent/10 border border-gold-accent/20 flex items-center justify-center text-gold-accent">
+                        <i data-lucide="rocket" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-white font-serif tracking-wide">25+</div>
+                        <div class="text-xs text-zinc-400">Projects Delivered</div>
+                    </div>
+                </div>
+                <!-- Metric 2 -->
+                <div class="flex items-center gap-4 p-4 rounded-xl bg-brandBg/60 border border-white/5" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 rounded-lg bg-neonRed-glow/10 border border-neonRed-glow/20 flex items-center justify-center text-neonRed-glow">
+                        <i data-lucide="clock" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-white font-serif tracking-wide">1000+</div>
+                        <div class="text-xs text-zinc-400">Hours Automated</div>
+                    </div>
+                </div>
+                <!-- Metric 3 -->
+                <div class="flex items-center gap-4 p-4 rounded-xl bg-brandBg/60 border border-white/5" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 rounded-lg bg-gold-accent/10 border border-gold-accent/20 flex items-center justify-center text-gold-accent">
+                        <i data-lucide="zap" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-white font-serif tracking-wide">Fast</div>
+                        <div class="text-xs text-zinc-400">Turnaround Time</div>
+                    </div>
+                </div>
+                <!-- Metric 4 -->
+                <div class="flex items-center gap-4 p-4 rounded-xl bg-brandBg/60 border border-white/5" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-12 h-12 rounded-lg bg-neonRed-glow/10 border border-neonRed-glow/20 flex items-center justify-center text-neonRed-glow">
+                        <i data-lucide="award" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-white font-serif tracking-wide">Premium</div>
+                        <div class="text-xs text-zinc-400">Digital Solutions</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 md:py-24 relative bg-brandBg">
+        <!-- Background Image -->
+        <div class="absolute inset-0 w-full h-full pointer-events-none" data-aos="fade-in" data-aos-duration="1500">
+            <img src="https://res.cloudinary.com/dadofd9d2/image/upload/v1780042677/f79bf366-03aa-46b2-84c0-ae515efda202_f9swap.png" alt="" class="w-full h-full object-cover opacity-70">
+            <div class="absolute inset-0 bg-brandBg/40"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4" data-aos="fade-up">
+                <span class="text-xs font-bold tracking-widest text-gold-accent uppercase">What We Do</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white">
+                    Solutions Designed for <span class="bg-gradient-to-r from-gold-300 to-neonRed-glow bg-clip-text text-transparent">Modern Business Growth</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-gold-accent to-neonRed-glow mx-auto mt-2"></div>
+                <p class="text-zinc-400 text-base">We combine performance design with deep technical stack automation to build scalable ecosystems.</p>
+            </div>
+
+            <!-- Services Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+                
+                <!-- Service 1: Landing Pages for Paid Ads -->
+                <div class="premium-glow-card rounded-2xl p-4 sm:p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="0">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-gold-accent/10 border border-gold-accent/30 flex items-center justify-center text-gold-accent">
+                                <i data-lucide="layout" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-bold text-zinc-500 uppercase">01 / Paid Traffic</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Landing Pages for Paid Ads</h3>
+                        <p class="text-zinc-400 text-sm mb-6">High-converting pages structured specifically for targeted PPC, Social, and Display campaigns.</p>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="text-xs font-semibold text-gold-400 uppercase tracking-wider mb-2">Ideal For:</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="text-[11px] bg-zinc-900 border border-white/5 px-2.5 py-1 rounded-full text-zinc-300">Google Ads</span>
+                                    <span class="text-[11px] bg-zinc-900 border border-white/5 px-2.5 py-1 rounded-full text-zinc-300">Meta Ads</span>
+                                    <span class="text-[11px] bg-zinc-900 border border-white/5 px-2.5 py-1 rounded-full text-zinc-300">Funnel Flows</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-semibold text-neonRed-glow uppercase tracking-wider mb-2">Key Areas:</h4>
+                                <ul class="space-y-1.5 text-xs text-zinc-400">
+                                    <li class="flex items-center gap-2"><i data-lucide="arrow-right-circle" class="w-3 h-3 text-gold-accent"></i> Mobile-First Speed Boost</li>
+                                    <li class="flex items-center gap-2"><i data-lucide="arrow-right-circle" class="w-3 h-3 text-gold-accent"></i> Persuasive Direct Response Copy</li>
+                                    <li class="flex items-center gap-2"><i data-lucide="arrow-right-circle" class="w-3 h-3 text-gold-accent"></i> Real-time Analytics Logging</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 2: Website Development -->
+                <div class="premium-glow-card rounded-2xl p-4 sm:p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-neonRed-glow/10 border border-neonRed-glow/30 flex items-center justify-center text-neonRed-glow">
+                                <i data-lucide="code" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-bold text-zinc-500 uppercase">02 / Custom Code</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Website Development</h3>
+                        <p class="text-zinc-400 text-sm mb-6">Modern websites built from scratch to establish strong digital authority and elegant user UX.</p>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="text-xs font-semibold text-gold-400 uppercase tracking-wider mb-2">Ideal For:</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="text-[11px] bg-zinc-900 border border-white/5 px-2.5 py-1 rounded-full text-zinc-300">Corporate</span>
+                                    <span class="text-[11px] bg-zinc-900 border border-white/5 px-2.5 py-1 rounded-full text-zinc-300">E-commerce</span>
+                                    <span class="text-[11px] bg-zinc-900 border border-white/5 px-2.5 py-1 rounded-full text-zinc-300">SaaS Portals</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-semibold text-neonRed-glow uppercase tracking-wider mb-2">Key Areas:</h4>
+                                <ul class="space-y-1.5 text-xs text-zinc-400">
+                                    <li class="flex items-center gap-2"><i data-lucide="arrow-right-circle" class="w-3 h-3 text-neonRed-glow"></i> High SEO Structural Integrity</li>
+                                    <li class="flex items-center gap-2"><i data-lucide="arrow-right-circle" class="w-3 h-3 text-neonRed-glow"></i> Modern CMS Deployments</li>
+                                    <li class="flex items-center gap-2"><i data-lucide="arrow-right-circle" class="w-3 h-3 text-neonRed-glow"></i> Fully Responsive Layouts</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 3: n8n Automation Systems -->
+                <div class="premium-glow-card rounded-2xl p-4 sm:p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-gold-accent/10 border border-gold-accent/30 flex items-center justify-center text-gold-accent">
+                                <i data-lucide="cpu" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-bold text-zinc-500 uppercase">03 / Automations</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">n8n Automation Systems</h3>
+                        <p class="text-zinc-400 text-sm mb-6">Advanced workflow systems that minimize manual steps and streamline lead and customer routes.</p>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="text-xs font-semibold text-gold-400 uppercase tracking-wider mb-2">Ideal For:</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="text-[11px] bg-zinc-900 border border-white/5 px-2.5 py-1 rounded-full text-zinc-300">Lead Syncing</span>
+                                    <span class="text-[11px] bg-zinc-900 border border-white/5 px-2.5 py-1 rounded-full text-zinc-300">CRM Pipelines</span>
+                                    <span class="text-[11px] bg-zinc-900 border border-white/5 px-2.5 py-1 rounded-full text-zinc-300">Notifications</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-semibold text-neonRed-glow uppercase tracking-wider mb-2">Key Areas:</h4>
+                                <ul class="space-y-1.5 text-xs text-zinc-400">
+                                    <li class="flex items-center gap-2"><i data-lucide="arrow-right-circle" class="w-3 h-3 text-gold-accent"></i> Multi-App Integrations</li>
+                                    <li class="flex items-center gap-2"><i data-lucide="arrow-right-circle" class="w-3 h-3 text-gold-accent"></i> Real-time Instant WhatsApp Alerts</li>
+                                    <li class="flex items-center gap-2"><i data-lucide="arrow-right-circle" class="w-3 h-3 text-gold-accent"></i> Custom Lead Deduplication</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 4: Email Marketing & Newsletters -->
+                <div class="premium-glow-card rounded-2xl p-4 sm:p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="0">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-neonRed-glow/10 border border-neonRed-glow/30 flex items-center justify-center text-neonRed-glow">
+                                <i data-lucide="mail" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-bold text-zinc-500 uppercase">04 / CRM Email</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Email Marketing Systems</h3>
+                        <p class="text-zinc-400 text-sm mb-6">Bespoke copy, sequences, and templates engineered to retain customers and drive recurring business.</p>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="text-xs font-semibold text-gold-400 uppercase tracking-wider mb-2">Ideal For:</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="text-[11px] bg-zinc-900 border border-white/5 px-2.5 py-1 rounded-full text-zinc-300">Weekly Newsletters</span>
+                                    <span class="text-[11px] bg-zinc-900 border border-white/5 px-2.5 py-1 rounded-full text-zinc-300">Nurture Flows</span>
+                                    <span class="text-[11px] bg-zinc-900 border border-white/5 px-2.5 py-1 rounded-full text-zinc-300">Sales Launches</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-semibold text-neonRed-glow uppercase tracking-wider mb-2">Key Areas:</h4>
+                                <ul class="space-y-1.5 text-xs text-zinc-400">
+                                    <li class="flex items-center gap-2"><i data-lucide="arrow-right-circle" class="w-3 h-3 text-neonRed-glow"></i> Multi-Segment Funnel Setup</li>
+                                    <li class="flex items-center gap-2"><i data-lucide="arrow-right-circle" class="w-3 h-3 text-neonRed-glow"></i> High Inbox Deliverability</li>
+                                    <li class="flex items-center gap-2"><i data-lucide="arrow-right-circle" class="w-3 h-3 text-neonRed-glow"></i> Professional Typography & Layouts</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 5: AI Visual Production -->
+                <div class="premium-glow-card rounded-2xl p-4 sm:p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-gold-accent/10 border border-gold-accent/30 flex items-center justify-center text-gold-accent">
+                                <i data-lucide="image" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-bold text-zinc-500 uppercase">05 / Creative Production</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">AI Visual Production</h3>
+                        <p class="text-zinc-400 text-sm mb-6">Stunning, fast, AI-optimized ad graphics and visual sets designed for high-click engagement CTR.</p>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="text-xs font-semibold text-gold-400 uppercase tracking-wider mb-2">Ideal For:</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="text-[11px] bg-zinc-900 border border-white/5 px-2.5 py-1 rounded-full text-zinc-300">Meta/Insta Assets</span>
+                                    <span class="text-[11px] bg-zinc-900 border border-white/5 px-2.5 py-1 rounded-full text-zinc-300">LinkedIn Creative</span>
+                                    <span class="text-[11px] bg-zinc-900 border border-white/5 px-2.5 py-1 rounded-full text-zinc-300">Web Assets</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-semibold text-neonRed-glow uppercase tracking-wider mb-2">Key Areas:</h4>
+                                <ul class="space-y-1.5 text-xs text-zinc-400">
+                                    <li class="flex items-center gap-2"><i data-lucide="arrow-right-circle" class="w-3 h-3 text-gold-accent"></i> Advanced AI Generated Concepts</li>
+                                    <li class="flex items-center gap-2"><i data-lucide="arrow-right-circle" class="w-3 h-3 text-gold-accent"></i> Strict Multi-Format Scalability</li>
+                                    <li class="flex items-center gap-2"><i data-lucide="arrow-right-circle" class="w-3 h-3 text-gold-accent"></i> Professional Graphic Elements</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 6: AI Video & Music Production -->
+                <div class="premium-glow-card rounded-2xl p-4 sm:p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-neonRed-glow/10 border border-neonRed-glow/30 flex items-center justify-center text-neonRed-glow">
+                                <i data-lucide="play-circle" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-xs font-bold text-zinc-500 uppercase">06 / Video Scaling</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">AI Video & Music Production</h3>
+                        <p class="text-zinc-400 text-sm mb-6">Cinematic reels, promotional segments, and high-impact custom voiceover audio.</p>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="text-xs font-semibold text-gold-400 uppercase tracking-wider mb-2">Ideal For:</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="text-[11px] bg-zinc-900 border border-white/5 px-2.5 py-1 rounded-full text-zinc-300">TikTok & Reels</span>
+                                    <span class="text-[11px] bg-zinc-900 border border-white/5 px-2.5 py-1 rounded-full text-zinc-300">YouTube Promos</span>
+                                    <span class="text-[11px] bg-zinc-900 border border-white/5 px-2.5 py-1 rounded-full text-zinc-300">Sonic Audio ID</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-semibold text-neonRed-glow uppercase tracking-wider mb-2">Key Areas:</h4>
+                                <ul class="space-y-1.5 text-xs text-zinc-400">
+                                    <li class="flex items-center gap-2"><i data-lucide="arrow-right-circle" class="w-3 h-3 text-neonRed-glow"></i> Stunning Kinetic Captions</li>
+                                    <li class="flex items-center gap-2"><i data-lucide="arrow-right-circle" class="w-3 h-3 text-neonRed-glow"></i> Custom AI Voice Generations</li>
+                                    <li class="flex items-center gap-2"><i data-lucide="arrow-right-circle" class="w-3 h-3 text-neonRed-glow"></i> Rhythmic Video Edits & Beats</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Built For Modern Brands Badge Board -->
+    <section class="py-12 md:py-16 bg-zinc-950/60 border-y border-zinc-900 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10" data-aos="fade-up">
+                <h3 class="text-sm font-semibold tracking-widest text-gold-accent uppercase mb-2">Built for Growth</h3>
+                <p class="text-lg text-white font-bold">Scaling Systems Customized for Diverse Niches</p>
+            </div>
+
+            <!-- Grid of Badges -->
+            <div class="flex flex-wrap gap-2 sm:gap-4 justify-center max-w-5xl mx-auto">
+                <span class="flex items-center gap-1.5 sm:gap-2.5 bg-zinc-900/80 border border-white/5 px-3 sm:px-5 py-2 sm:py-3 rounded-full hover:border-gold-accent/30 transition-all text-[11px] sm:text-sm font-semibold text-zinc-300" data-aos="fade-up" data-aos-delay="0">
+                    <i data-lucide="rocket" class="w-4 h-4 text-gold-accent"></i> Startups
+                </span>
+                <span class="flex items-center gap-1.5 sm:gap-2.5 bg-zinc-900/80 border border-white/5 px-3 sm:px-5 py-2 sm:py-3 rounded-full hover:border-gold-accent/30 transition-all text-[11px] sm:text-sm font-semibold text-zinc-300" data-aos="fade-up" data-aos-delay="50">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-neonRed-glow"></i> Local Businesses
+                </span>
+                <span class="flex items-center gap-1.5 sm:gap-2.5 bg-zinc-900/80 border border-white/5 px-3 sm:px-5 py-2 sm:py-3 rounded-full hover:border-gold-accent/30 transition-all text-[11px] sm:text-sm font-semibold text-zinc-300" data-aos="fade-up" data-aos-delay="100">
+                    <i data-lucide="users" class="w-4 h-4 text-gold-accent"></i> Coaches & Consultants
+                </span>
+                <span class="flex items-center gap-1.5 sm:gap-2.5 bg-zinc-900/80 border border-white/5 px-3 sm:px-5 py-2 sm:py-3 rounded-full hover:border-gold-accent/30 transition-all text-[11px] sm:text-sm font-semibold text-zinc-300" data-aos="fade-up" data-aos-delay="150">
+                    <i data-lucide="briefcase" class="w-4 h-4 text-neonRed-glow"></i> Marketing Agencies
+                </span>
+                <span class="flex items-center gap-1.5 sm:gap-2.5 bg-zinc-900/80 border border-white/5 px-3 sm:px-5 py-2 sm:py-3 rounded-full hover:border-gold-accent/30 transition-all text-[11px] sm:text-sm font-semibold text-zinc-300" data-aos="fade-up" data-aos-delay="200">
+                    <i data-lucide="shopping-bag" class="w-4 h-4 text-gold-accent"></i> E-commerce Brands
+                </span>
+                <span class="flex items-center gap-1.5 sm:gap-2.5 bg-zinc-900/80 border border-white/5 px-3 sm:px-5 py-2 sm:py-3 rounded-full hover:border-gold-accent/30 transition-all text-[11px] sm:text-sm font-semibold text-zinc-300" data-aos="fade-up" data-aos-delay="250">
+                    <i data-lucide="star" class="w-4 h-4 text-neonRed-glow"></i> Personal Brands
+                </span>
+                <span class="flex items-center gap-1.5 sm:gap-2.5 bg-zinc-900/80 border border-white/5 px-3 sm:px-5 py-2 sm:py-3 rounded-full hover:border-gold-accent/30 transition-all text-[11px] sm:text-sm font-semibold text-zinc-300" data-aos="fade-up" data-aos-delay="300">
+                    <i data-lucide="layers" class="w-4 h-4 text-gold-accent"></i> SaaS Businesses
+                </span>
+                <span class="flex items-center gap-1.5 sm:gap-2.5 bg-zinc-900/80 border border-white/5 px-3 sm:px-5 py-2 sm:py-3 rounded-full hover:border-gold-accent/30 transition-all text-[11px] sm:text-sm font-semibold text-zinc-300" data-aos="fade-up" data-aos-delay="350">
+                    <i data-lucide="home" class="w-4 h-4 text-neonRed-glow"></i> Real Estate Businesses
+                </span>
+                <span class="flex items-center gap-1.5 sm:gap-2.5 bg-zinc-900/80 border border-white/5 px-3 sm:px-5 py-2 sm:py-3 rounded-full hover:border-gold-accent/30 transition-all text-[11px] sm:text-sm font-semibold text-zinc-300" data-aos="fade-up" data-aos-delay="400">
+                    <i data-lucide="video" class="w-4 h-4 text-gold-accent"></i> Content Creators
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Panelverse Section -->
+    <section class="py-16 md:py-24 bg-zinc-950 border-t border-zinc-900 relative overflow-x-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Side Content -->
+                <div class="lg:col-span-6 space-y-6" data-aos="fade-left">
+                    <span class="text-xs font-bold tracking-widest text-gold-accent uppercase">Why Panelverse</span>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">
+                        Creative Systems Built to <span class="bg-gradient-to-r from-gold-300 to-neonRed-glow bg-clip-text text-transparent">Scale Upward</span></h2>
+                    <p class="text-zinc-400 text-sm leading-relaxed">
+                        Panelverse combines premium digital design, custom code integrations, AI-generated media, and smart server-less automations into one streamlined workflow. We don't just deploy static assets. We help modern brands create robust, scalable technical infrastructure that drives sales.
+                    </p>
+
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-start gap-3" data-aos="fade-up" data-aos-delay="0">
+                            <div class="w-5 h-5 rounded-full bg-neonRed-glow/10 flex items-center justify-center text-neonRed-glow mt-1 flex-shrink-0">
+                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">Conversion-Focused Approach</h4>
+                                <p class="text-xs text-zinc-500">Every design element is chosen specifically to minimize friction and lift conversion ratios.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3" data-aos="fade-up" data-aos-delay="100">
+                            <div class="w-5 h-5 rounded-full bg-neonRed-glow/10 flex items-center justify-center text-neonRed-glow mt-1 flex-shrink-0">
+                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">AI-Driven Creativity & Automated Logic</h4>
+                                <p class="text-xs text-zinc-500">Combining high-fidelity media generations with programmatic systems to scale campaign assets.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3" data-aos="fade-up" data-aos-delay="200">
+                            <div class="w-5 h-5 rounded-full bg-neonRed-glow/10 flex items-center justify-center text-neonRed-glow mt-1 flex-shrink-0">
+                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">Data-Driven Decisions & Performance</h4>
+                                <p class="text-xs text-zinc-500">We analyze customer interactions to continuously refine layout copy and routing speeds.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side Interactive Panel "Why Clients Choose Us" -->
+                <div class="lg:col-span-6" data-aos="fade-right">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+                        <div class="p-4 sm:p-5 rounded-xl bg-brandBg border border-zinc-800 space-y-2" data-aos="scale-up" data-aos-delay="0">
+                            <i data-lucide="palette" class="w-5 sm:w-6 h-5 sm:h-6 text-gold-accent"></i>
+                            <h4 class="text-xs sm:text-sm font-bold text-white">Premium Modern Design</h4>
+                            <p class="text-[10px] sm:text-xs text-zinc-500">Eye-catching assets matching your strict guidelines.</p>
+                        </div>
+                        <div class="p-4 sm:p-5 rounded-xl bg-brandBg border border-zinc-800 space-y-2" data-aos="scale-up" data-aos-delay="100">
+                            <i data-lucide="clock" class="w-5 sm:w-6 h-5 sm:h-6 text-neonRed-glow"></i>
+                            <h4 class="text-xs sm:text-sm font-bold text-white">Fast Delivery</h4>
+                            <p class="text-[10px] sm:text-xs text-zinc-500">Fast sprint frameworks that don't sacrifice quality.</p>
+                        </div>
+                        <div class="p-4 sm:p-5 rounded-xl bg-brandBg border border-zinc-800 space-y-2" data-aos="scale-up" data-aos-delay="200">
+                            <i data-lucide="trending-up" class="w-5 sm:w-6 h-5 sm:h-6 text-gold-accent"></i>
+                            <h4 class="text-xs sm:text-sm font-bold text-white">Conversion-Focused</h4>
+                            <p class="text-[10px] sm:text-xs text-zinc-500">Configured structures targeting improved campaign performance.</p>
+                        </div>
+                        <div class="p-4 sm:p-5 rounded-xl bg-brandBg border border-zinc-800 space-y-2" data-aos="scale-up" data-aos-delay="300">
+                            <i data-lucide="settings" class="w-5 sm:w-6 h-5 sm:h-6 text-neonRed-glow"></i>
+                            <h4 class="text-xs sm:text-sm font-bold text-white">Smart Automation</h4>
+                            <p class="text-[10px] sm:text-xs text-zinc-500">Saving hours of work with background n8n tasks.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 md:py-24 relative bg-brandBg">
+        <div class="absolute inset-0 w-full h-full pointer-events-none" data-aos="fade-in" data-aos-duration="1500">
+            <img src="https://res.cloudinary.com/dadofd9d2/image/upload/v1780042950/ChatGPT_Image_May_29_2026_01_52_17_PM_xoohgl.png" alt="" class="w-full h-full object-cover opacity-80">
+            <div class="absolute inset-0 bg-brandBg/30"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-2" data-aos="fade-up">
+                <span class="text-xs font-bold tracking-widest text-gold-accent uppercase">Testimonials</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">What Clients Appreciate</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-gold-accent to-neonRed-glow mx-auto mt-2"></div>
+            </div>
+
+            <!-- Testimonials Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                
+                <!-- Card 1 -->
+                <div class="p-4 sm:p-6 rounded-2xl bg-zinc-950 border border-zinc-800/80 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 mb-3 sm:mb-4 text-gold-accent">
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-gold-accent"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-gold-accent"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-gold-accent"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-gold-accent"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-gold-accent"></i>
+                        </div>
+                        <p class="text-zinc-300 text-xs sm:text-sm italic leading-relaxed mb-4 sm:mb-6">
+                            "Our leads increased by 210% in just 30 days! The landing page and automations were absolutely game-changing."
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-white">Rohan Mehta</h4>
+                        <span class="text-[10px] text-zinc-500">Founder, FitFuel</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="p-4 sm:p-6 rounded-2xl bg-zinc-950 border border-zinc-800/80 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 mb-3 sm:mb-4 text-gold-accent">
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-gold-accent"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-gold-accent"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-gold-accent"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-gold-accent"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-gold-accent"></i>
+                        </div>
+                        <p class="text-zinc-300 text-xs sm:text-sm italic leading-relaxed mb-4 sm:mb-6">
+                            "Professional, fast, and incredibly creative. Panelverse built our entire growth engine from scratch."
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-white">Anjali Sharma</h4>
+                        <span class="text-[10px] text-zinc-500">CMO, EduScale</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="p-4 sm:p-6 rounded-2xl bg-zinc-950 border border-zinc-800/80 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <div class="flex items-center gap-1 mb-3 sm:mb-4 text-gold-accent">
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-gold-accent"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-gold-accent"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-gold-accent"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-gold-accent"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-gold-accent"></i>
+                        </div>
+                        <p class="text-zinc-300 text-xs sm:text-sm italic leading-relaxed mb-4 sm:mb-6">
+                            "The n8n automations saved us 20+ hours every week. Highly recommended!"
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-white">Karan Virk</h4>
+                        <span class="text-[10px] text-zinc-500">CEO, BuildRight</span>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="p-4 sm:p-6 rounded-2xl bg-zinc-950 border border-zinc-800/80 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
+                    <div>
+                        <div class="flex items-center gap-1 mb-3 sm:mb-4 text-gold-accent">
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-gold-accent"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-gold-accent"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-gold-accent"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-gold-accent"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-gold-accent"></i>
+                        </div>
+                        <p class="text-zinc-300 text-xs sm:text-sm italic leading-relaxed mb-4 sm:mb-6">
+                            "Amazing ad creatives and videos that actually convert. Our ROAS improved significantly."
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-white">Neha Kapoor</h4>
+                        <span class="text-[10px] text-zinc-500">Growth Marketer</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Process Section -->
+    <section id="process" class="py-16 md:py-24 bg-zinc-950 border-t border-zinc-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-2xl mx-auto mb-20 space-y-2" data-aos="fade-up">
+                <span class="text-xs font-bold tracking-widest text-gold-accent uppercase">Our Process</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">The Panelverse Workflow</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-gold-accent to-neonRed-glow mx-auto mt-2"></div>
+            </div>
+
+            <!-- Process Flow Steps -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 relative">
+                <!-- Decorative Connector line (Desktop only) -->
+                <div class="hidden lg:block absolute top-10 left-16 right-16 h-[2px] bg-zinc-800 z-0"></div>
+
+                <!-- Step 1 -->
+                <div class="relative z-10 space-y-4" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-16 h-16 rounded-2xl bg-brandBg border border-zinc-800 flex items-center justify-center font-serif text-2xl font-bold text-gold-accent">
+                        01
+                    </div>
+                    <h3 class="text-lg font-bold text-white">Strategy</h3>
+                    <p class="text-xs text-zinc-400 leading-relaxed">
+                        We research, plan, and build a roadmap tailored to your specific audience and business requirements.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative z-10 space-y-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 rounded-2xl bg-brandBg border border-zinc-800 flex items-center justify-center font-serif text-2xl font-bold text-neonRed-glow">
+                        02
+                    </div>
+                    <h3 class="text-lg font-bold text-white">Design</h3>
+                    <p class="text-xs text-zinc-400 leading-relaxed">
+                        Premium UI/UX systems, custom high-fidelity layouts, and robust process flowcharts are mapped out.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative z-10 space-y-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 rounded-2xl bg-brandBg border border-zinc-800 flex items-center justify-center font-serif text-2xl font-bold text-gold-accent">
+                        03
+                    </div>
+                    <h3 class="text-lg font-bold text-white">Development</h3>
+                    <p class="text-xs text-zinc-400 leading-relaxed">
+                        Websites, database structures, CRM linkages, and scripts are programmed and stress-tested.
+                    </p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative z-10 space-y-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 rounded-2xl bg-brandBg border border-zinc-800 flex items-center justify-center font-serif text-2xl font-bold text-neonRed-glow">
+                        04
+                    </div>
+                    <h3 class="text-lg font-bold text-white">Launch & Scale</h3>
+                    <p class="text-xs text-zinc-400 leading-relaxed">
+                        Smooth deployment across servers, and structured handover to fuel active long-term operations.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing / Scope Estimator & Contact Section -->
+    <section id="contact" class="py-16 md:py-24 relative bg-brandBg overflow-x-hidden">
+        <div class="absolute inset-0 w-full h-full pointer-events-none" data-aos="fade-in" data-aos-duration="1500">
+            <img src="https://res.cloudinary.com/dadofd9d2/image/upload/v1780043148/ChatGPT_Image_May_29_2026_01_55_33_PM_jqtjlw.png" alt="" class="w-full h-full object-cover opacity-60">
+            <div class="absolute inset-0 bg-brandBg/40"></div>
+        </div>
+        <div class="hidden lg:block absolute top-[30%] right-[10%] w-[350px] h-[350px] bg-gold-accent/5 rounded-full blur-[110px] pointer-events-none z-10" data-aos="fade-in" data-aos-delay="300" data-aos-duration="1000"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Contact info & Smart Interactive Scope Calculator (Left) -->
+                <div class="lg:col-span-6 space-y-8" data-aos="fade-left">
+                    <div data-aos="fade-up" data-aos-delay="0">
+                        <span class="text-xs font-bold tracking-widest text-gold-accent uppercase">Get In Touch</span>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mt-1">Get Custom Proposal & Pricing</h2>
+                        <p class="text-zinc-400 text-sm mt-3">
+                            Tell us about your requirements or select parameters below to dynamically configure your system scope instantly!
+                        </p>
+                    </div>
+
+                    <!-- Service Benefits Checklist -->
+                    <div class="p-4 sm:p-6 rounded-2xl bg-zinc-950 border border-zinc-800 space-y-4 sm:space-y-5" data-aos="fade-up" data-aos-delay="100">
+                        <h3 class="text-xs font-bold text-gold-accent uppercase tracking-wider flex items-center gap-2">
+                            <i data-lucide="list-checks" class="w-4 h-4"></i> What You Get With Every Project
+                        </h3>
+                        
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3 p-3 rounded-lg bg-brandBg/60 border border-white/5" data-aos="fade-up" data-aos-delay="0">
+                                <div class="w-6 h-6 rounded-full bg-gold-accent/10 flex items-center justify-center text-gold-accent flex-shrink-0 mt-0.5">
+                                    <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-white">Conversion-First Design</h4>
+                                    <p class="text-[11px] text-zinc-500 leading-relaxed">Every layout, CTA, and asset is purpose-built to maximize click-throughs and conversions.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-3 rounded-lg bg-brandBg/60 border border-white/5" data-aos="fade-up" data-aos-delay="100">
+                                <div class="w-6 h-6 rounded-full bg-neonRed-glow/10 flex items-center justify-center text-neonRed-glow flex-shrink-0 mt-0.5">
+                                    <i data-lucide="gauge" class="w-3.5 h-3.5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-white">Optimized for Speed</h4>
+                                    <p class="text-[11px] text-zinc-500 leading-relaxed">Lightning-fast load times and mobile-optimized systems to reduce bounce and improve ad scores.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-3 rounded-lg bg-brandBg/60 border border-white/5" data-aos="fade-up" data-aos-delay="200">
+                                <div class="w-6 h-6 rounded-full bg-gold-accent/10 flex items-center justify-center text-gold-accent flex-shrink-0 mt-0.5">
+                                    <i data-lucide="workflow" class="w-3.5 h-3.5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-white">Automated Lead Routing</h4>
+                                    <p class="text-[11px] text-zinc-500 leading-relaxed">n8n-powered workflows that capture, qualify, and alert you instantly across email, Slack, or WhatsApp.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-3 rounded-lg bg-brandBg/60 border border-white/5" data-aos="fade-up" data-aos-delay="300">
+                                <div class="w-6 h-6 rounded-full bg-neonRed-glow/10 flex items-center justify-center text-neonRed-glow flex-shrink-0 mt-0.5">
+                                    <i data-lucide="bar-chart-3" class="w-3.5 h-3.5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-white">Real Performance Tracking</h4>
+                                    <p class="text-[11px] text-zinc-500 leading-relaxed">Analytics dashboards, conversion logging, and A/B testing baked into every deployment.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp Quick Chat Trigger -->
+                    <div class="p-5 rounded-2xl bg-zinc-950/80 border border-zinc-900 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                                <i data-lucide="message-square" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-white">Prefer Fast WhatsApp Discussions?</h4>
+                                <p class="text-[10px] text-zinc-500">Response in under 24 hours. No obligation.</p>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/919815121578" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-xs font-bold rounded-lg transition-all self-stretch sm:self-auto justify-center">
+                            <span>Chat on WhatsApp</span>
+                            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Complete Proposal Inquiry Form (Right) -->
+                <div class="lg:col-span-6 bg-zinc-950 border border-zinc-800 p-4 sm:p-6 lg:p-8 rounded-2xl relative flex flex-col" data-aos="fade-right">
+                    <h3 class="text-lg font-serif font-bold text-white tracking-wide mb-4 sm:mb-6">Send Form Submission</h3>
+                    
+                    <form id="proposalInquiryForm" class="flex flex-col flex-1 space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="formFullName" class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-1.5">Full Name</label>
+                                <input type="text" id="formFullName" required class="w-full bg-brandBg border border-zinc-800 rounded-lg py-2.5 px-4 text-sm text-white focus:outline-none focus:border-gold-accent/60 transition-colors" placeholder="e.g. Liam Dev">
+                            </div>
+                            <div>
+                                <label for="formWorkEmail" class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-1.5">Work Email</label>
+                                <input type="email" id="formWorkEmail" required class="w-full bg-brandBg border border-zinc-800 rounded-lg py-2.5 px-4 text-sm text-white focus:outline-none focus:border-gold-accent/60 transition-colors" placeholder="e.g. name@brand.com">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="formPhone" class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-1.5">Phone Number</label>
+                                <input type="tel" id="formPhone" class="w-full bg-brandBg border border-zinc-800 rounded-lg py-2.5 px-4 text-sm text-white focus:outline-none focus:border-gold-accent/60 transition-colors" placeholder="e.g. +1 555-0199">
+                            </div>
+                            <div>
+                                <label for="formLocation" class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-1.5">Business Location</label>
+                                <input type="text" id="formLocation" class="w-full bg-brandBg border border-zinc-800 rounded-lg py-2.5 px-4 text-sm text-white focus:outline-none focus:border-gold-accent/60 transition-colors" placeholder="e.g. California, US">
+                            </div>
+                        </div>
+
+                        <div class="flex-1">
+                            <label for="formDetails" class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-1.5">Project Details / Requirements</label>
+                            <textarea id="formDetails" rows="4" required class="w-full bg-brandBg border border-zinc-800 rounded-lg py-2.5 px-4 text-sm text-white focus:outline-none focus:border-gold-accent/60 transition-colors resize-none h-[calc(100%-1.5rem)]" placeholder="Provide details regarding landing layout, required systems connection, and goals..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-gradient-to-r from-neonRed-dark to-neonRed-glow text-white font-bold py-3.5 px-6 rounded-lg hover:opacity-90 transition-all flex items-center justify-center gap-2">
+                            <span>Request Custom Proposal</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Call to Action Section -->
+    <section class="py-16 md:py-20 relative bg-zinc-950 border-t border-zinc-900 overflow-hidden">
+        <!-- Background image/color texture -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(212,175,55,0.06)_0%,rgba(5,5,7,0)_60%)] pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6" data-aos="fade-up">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white leading-tight" data-aos="fade-up" data-aos-delay="0">Ready to Build Smarter Digital Systems?</h2>
+            <p class="text-zinc-400 text-sm max-w-2xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                From landing pages and websites to AI visuals, automations, newsletters, and media production — Panelverse helps businesses scale with modern creative infrastructure.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4" data-aos="fade-up" data-aos-delay="200">
+                <a href="#contact" class="w-full sm:w-auto bg-gradient-to-r from-neonRed-dark to-neonRed-glow text-white font-bold py-4 px-8 rounded-lg shadow-red-glow hover:opacity-90 transition-all">
+                    Start Your Project
+                </a>
+                <a href="https://wa.me/919815121578" target="_blank" class="w-full sm:w-auto border border-zinc-800 hover:border-gold-accent hover:bg-white/5 text-zinc-300 font-bold py-4 px-8 rounded-lg transition-all">
+                    Book a Consultation
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Area -->
+    <footer class="bg-[#050507] border-t border-zinc-900 pt-16 pb-8 relative z-10 text-xs text-zinc-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-6 md:gap-8 mb-12">
+                
+                <!-- Main Info Grid -->
+                <div class="md:col-span-4 space-y-4" data-aos="fade-up" data-aos-delay="0">
+                    <span class="font-serif text-xl font-bold tracking-widest text-white">
+                        PANEL<span class="text-gold-accent">VERSE</span>
+                    </span>
+                    <p class="text-zinc-400 leading-relaxed text-xs">
+                        Creative Technology Studio. High-converting landing designs, AI media setups, and active automated workflow systems tailored for aggressive business metrics.
+                    </p>
+                </div>
+
+                <!-- Column 2 (Services Links) -->
+                <div class="md:col-span-2 space-y-3" data-aos="fade-up" data-aos-delay="100">
+                    <h4 class="font-bold text-white text-xs uppercase tracking-wider">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#services" class="hover:text-gold-accent transition-colors">Landing Pages</a></li>
+                        <li><a href="#services" class="hover:text-gold-accent transition-colors">Web Development</a></li>
+                        <li><a href="#services" class="hover:text-gold-accent transition-colors">n8n Automations</a></li>
+                        <li><a href="#services" class="hover:text-gold-accent transition-colors">Email Campaigns</a></li>
+                        <li><a href="#services" class="hover:text-gold-accent transition-colors">AI Media Engine</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 (Quick Navigation) -->
+                <div class="md:col-span-2 space-y-3" data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="font-bold text-white text-xs uppercase tracking-wider">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="hover:text-gold-accent transition-colors">Home</a></li>
+                        <li><a href="#services" class="hover:text-gold-accent transition-colors">Services</a></li>
+                        <li><a href="#process" class="hover:text-gold-accent transition-colors">Process</a></li>
+                        <li><a href="#contact" class="hover:text-gold-accent transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4 (Contact Detail) -->
+                <div class="md:col-span-2 space-y-3" data-aos="fade-up" data-aos-delay="300">
+                    <h4 class="font-bold text-white text-xs uppercase tracking-wider">Contact Details</h4>
+                    <p class="text-zinc-400">Phone: +91 98151 21578</p>
+                    <p class="text-zinc-400">Email: rounak153d@gmail.com</p>
+                    <p class="text-zinc-400">Location: Chandigarh, India</p>
+                </div>
+
+                <!-- Column 5 (Social Links) -->
+                <div class="md:col-span-2 space-y-3" data-aos="fade-up" data-aos-delay="400">
+                    <h4 class="font-bold text-white text-xs uppercase tracking-wider">Follow Us</h4>
+                    <div class="flex gap-3">
+                        <a href="https://www.linkedin.com/in/rounak-dutta-153784321" target="_blank" class="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-gold-accent hover:border-gold-accent/50 transition-all" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/_panelverse?igsh=cHQ3NHA4NmJiZ20=" target="_blank" class="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-gold-accent hover:border-gold-accent/50 transition-all" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                        </a>
+                        <a href="https://www.youtube.com/@PanelVerse01" target="_blank" class="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-gold-accent hover:border-gold-accent/50 transition-all" aria-label="YouTube">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer Bottom Section -->
+            <div class="pt-8 border-t border-zinc-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left" data-aos="fade-up">
+                <p>&copy; 2026 PANELVERSE. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="javascript:void(0)" onclick="openModal('privacy-policy')" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="javascript:void(0)" onclick="openModal('terms-of-service')" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacy-policy" class="fixed inset-0 z-[100] flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeModal('privacy-policy')"></div>
+        <div class="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto bg-zinc-950 border border-zinc-800 rounded-2xl p-6 sm:p-8 shadow-2xl">
+            <button onclick="closeModal('privacy-policy')" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center text-zinc-400 hover:text-white transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <h2 class="text-xl sm:text-2xl font-serif font-bold text-white mb-6">Privacy Policy</h2>
+            <div class="space-y-4 text-sm text-zinc-400 leading-relaxed">
+                <p><strong class="text-zinc-200">Last Updated:</strong> May 29, 2026</p>
+                <p>PANELVERSE ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.</p>
+                <h3 class="text-base font-semibold text-white mt-6">1. Information We Collect</h3>
+                <p>We collect information that you voluntarily provide to us when you fill out forms, subscribe to newsletters, or communicate with us. This includes your name, email address, phone number, and project details.</p>
+                <h3 class="text-base font-semibold text-white">2. How We Use Your Information</h3>
+                <p>We use the information we collect to respond to inquiries, provide services, send marketing communications (with your consent), improve our website, and comply with legal obligations.</p>
+                <h3 class="text-base font-semibold text-white">3. Data Protection</h3>
+                <p>We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction.</p>
+                <h3 class="text-base font-semibold text-white">4. Third-Party Disclosure</h3>
+                <p>We do not sell, trade, or otherwise transfer your personally identifiable information to third parties without your consent, except as required by law or to provide our services (e.g., payment processors, hosting providers).</p>
+                <h3 class="text-base font-semibold text-white">5. Your Rights</h3>
+                <p>You have the right to access, correct, or delete your personal data. You may also withdraw consent for marketing communications at any time by contacting us.</p>
+                <h3 class="text-base font-semibold text-white">6. Contact</h3>
+                <p>For questions about this policy, contact us at <a href="mailto:rounak153d@gmail.com" class="text-gold-accent hover:underline">rounak153d@gmail.com</a> or call +91 98151 21578.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div id="terms-of-service" class="fixed inset-0 z-[100] flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeModal('terms-of-service')"></div>
+        <div class="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto bg-zinc-950 border border-zinc-800 rounded-2xl p-6 sm:p-8 shadow-2xl">
+            <button onclick="closeModal('terms-of-service')" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center text-zinc-400 hover:text-white transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <h2 class="text-xl sm:text-2xl font-serif font-bold text-white mb-6">Terms of Service</h2>
+            <div class="space-y-4 text-sm text-zinc-400 leading-relaxed">
+                <p><strong class="text-zinc-200">Last Updated:</strong> May 29, 2026</p>
+                <p>By accessing or using PANELVERSE services, you agree to be bound by these Terms of Service. If you do not agree, please do not use our services.</p>
+                <h3 class="text-base font-semibold text-white mt-6">1. Services</h3>
+                <p>PANELVERSE provides landing page development, website development, n8n automation systems, email marketing, AI visual and video production, and related digital services as agreed upon in individual project scopes.</p>
+                <h3 class="text-base font-semibold text-white">2. Project Scope & Timeline</h3>
+                <p>All project details, deliverables, timelines, and pricing are defined in a custom proposal provided to each client. Revisions and additional scope changes may incur extra charges.</p>
+                <h3 class="text-base font-semibold text-white">3. Payment Terms</h3>
+                <p>Payment schedules are outlined in the project proposal. Late payments may result in project delays or suspension of services until outstanding balances are cleared.</p>
+                <h3 class="text-base font-semibold text-white">4. Intellectual Property</h3>
+                <p>Upon full payment, the client retains ownership of the final deliverables. PANELVERSE retains the right to display completed work in its portfolio unless otherwise agreed.</p>
+                <h3 class="text-base font-semibold text-white">5. Limitation of Liability</h3>
+                <p>PANELVERSE shall not be liable for any indirect, incidental, or consequential damages arising from the use of our services or deliverables.</p>
+                <h3 class="text-base font-semibold text-white">6. Termination</h3>
+                <p>Either party may terminate a project agreement with written notice. Fees for work completed up to the termination date are non-refundable.</p>
+                <h3 class="text-base font-semibold text-white">7. Contact</h3>
+                <p>For questions about these terms, contact <a href="mailto:rounak153d@gmail.com" class="text-gold-accent hover:underline">rounak153d@gmail.com</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fixed WhatsApp Button -->
+    <a href="https://wa.me/919815121578" target="_blank" class="fixed bottom-[8vh] sm:bottom-6 right-6 z-[60] w-14 h-14 rounded-full bg-gradient-to-r from-neonRed-dark to-neonRed-glow shadow-lg shadow-red-glow flex items-center justify-center text-white transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(249,87,56,0.5)] animate-fade-in-up" aria-label="Chat on WhatsApp" style="animation-delay:0.8s;animation-fill-mode:forwards;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" class="wa-bounce" style="animation-delay:1.5s;">
+            <path d="M12.032 21.965c-1.916 0-3.78-.496-5.384-1.426l-4.648 1.521 1.558-4.515a9.878 9.878 0 0 1-1.528-5.435c0-5.481 4.465-9.946 9.946-9.946 2.655 0 5.151 1.035 7.027 2.913 1.877 1.878 2.91 4.374 2.909 7.028-.001 5.48-4.467 9.945-9.88 9.86zm.002-18.297c-4.606 0-8.354 3.747-8.354 8.354 0 1.874.615 3.64 1.765 5.075l-1.152 3.339 3.448-1.127c1.455.938 3.135 1.435 4.926 1.435h.003c4.606 0 8.354-3.747 8.354-8.354 0-2.23-.869-4.327-2.446-5.905-1.576-1.575-3.673-2.443-5.904-2.443l-.59.001z"/>
+            <path d="M16.677 14.215c-.286.806-1.007 1.285-1.706 1.477-.653.179-1.273.158-1.872.098-.671-.066-1.255-.341-1.79-.644-.868-.492-1.579-1.141-2.178-1.91-.549-.703-.98-1.477-1.226-2.347-.149-.526-.067-1.028.237-1.483.183-.274.416-.508.679-.703.201-.149.386-.089.519.066.177.207.367.401.528.626.279.39.491.817.558 1.298.066.481-.065.847-.338 1.192-.083.105-.173.203-.255.311-.086.114-.183.219-.196.371-.022.269.121.502.233.718.238.461.555.869.919 1.244.496.51 1.069.923 1.735 1.191.401.161.818.245 1.249.167.232-.042.398-.199.531-.392.136-.198.247-.413.366-.63.061-.111.136-.195.264-.213.103-.015.192.024.277.064.428.2.852.406 1.289.584.222.091.45.186.652.312.169.106.221.27.159.477z"/>
+        </svg>
+    </a>
+
+    <!-- Custom Notification Box Toast Element -->
+    <div id="toastNotification" class="fixed bottom-6 right-[72px] z-50 bg-zinc-950 border border-gold-accent/40 rounded-xl shadow-2xl p-4 max-w-sm flex items-start gap-3 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300">
+        <div class="w-8 h-8 rounded-lg bg-gold-accent/10 border border-gold-accent/30 flex items-center justify-center text-gold-accent flex-shrink-0">
+            <i data-lucide="check" class="w-5 h-5" id="toastIcon"></i>
+        </div>
+        <div>
+            <h4 class="text-xs font-bold text-white" id="toastTitle">Success Action</h4>
+            <p class="text-[11px] text-zinc-400 mt-0.5" id="toastDesc">Information registered successfully.</p>
+        </div>
+    </div>
+
+    <!-- Interactive JS Script Logic -->
+    <script>
+        // Start Lucide Icons inside the window
+        lucide.createIcons();
+
+        // 1. Mobile Hamburger Menu Toggle Action
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            const isOpen = !mobileMenu.classList.contains('hidden');
+            if (isOpen) {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+            } else {
+                mobileMenu.classList.remove('hidden');
+                mobileMenuBtn.innerHTML = '<i data-lucide="x" class="w-6 h-6"></i>';
+            }
+            lucide.createIcons();
+        });
+
+        // Close mobile menu when links are clicked
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+                lucide.createIcons();
+            });
+        });
+
+        // 2. Interactive Portfolio Filter Logic
+        const filterButtons = document.querySelectorAll('.portfolio-filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active classes
+                filterButtons.forEach(b => {
+                    b.className = "portfolio-filter-btn px-4 py-2 text-xs font-semibold rounded-full border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 transition-all";
+                });
+                
+                // Add active class
+                btn.className = "portfolio-filter-btn px-4 py-2 text-xs font-semibold rounded-full border bg-gold-accent/15 border-gold-accent/40 text-gold-accent transition-all";
+                
+                const selectedCategory = btn.getAttribute('data-category');
+                
+                portfolioItems.forEach(item => {
+                    if (selectedCategory === 'all' || item.getAttribute('data-category') === selectedCategory) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // 4. Complete Proposal Inquiry Form — sends via Google Apps Script
+        const proposalForm = document.getElementById('proposalInquiryForm');
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxcMCmlbtgSleY2Bwh5fEUGLdhZYRO25WTvWk6sJu87ZfGK_YYnMZ__saM2F3yoiCw7/exec';
+
+        proposalForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const payload = {
+                fullName: document.getElementById('formFullName').value,
+                email:    document.getElementById('formWorkEmail').value,
+                phone:    document.getElementById('formPhone').value,
+                location: document.getElementById('formLocation').value,
+                details:  document.getElementById('formDetails').value
+            };
+
+            fetch(APPS_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                showToast('Proposal Requested', `Thank you ${payload.fullName}! We will send a strategy proposal to ${payload.email} within 24 hours.`, 'check');
+                proposalForm.reset();
+            })
+            .catch(() => {
+                showToast('Proposal Requested', `Thank you ${payload.fullName}! We will review and get back to you shortly.`, 'check');
+                proposalForm.reset();
+            });
+        });
+
+        // 5. Custom Toast Notification Manager
+        const toast = document.getElementById('toastNotification');
+        const toastTitle = document.getElementById('toastTitle');
+        const toastDesc = document.getElementById('toastDesc');
+        const toastIcon = document.getElementById('toastIcon');
+
+        function showToast(title, desc, iconName) {
+            toastTitle.innerText = title;
+            toastDesc.innerText = desc;
+            toastIcon.setAttribute('data-lucide', iconName);
+            lucide.createIcons();
+
+            // Slide in animation
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            
+            // Automatically close after 5 seconds
+            setTimeout(() => {
+                closeToast();
+            }, 5000);
+        }
+
+        function closeToast() {
+            toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+        }
+
+        // 6. Modal Open/Close for Privacy & Terms
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            if (!modal) return;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            history.replaceState(null, '', '#' + id);
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            if (!modal) return;
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+            history.replaceState(null, '', window.location.pathname);
+        }
+
+        // Close modals on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('[id$="-policy"], [id$="-service"]').forEach(m => {
+                    if (!m.classList.contains('hidden')) closeModal(m.id);
+                });
+            }
+        });
+
+        // Open modals from URL hash on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash === 'privacy-policy' || hash === 'terms-of-service') {
+                setTimeout(() => openModal(hash), 300);
+            }
+        });
+
+        // Also catch hash changes after load (e.g. clicking from external link)
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash === 'privacy-policy') openModal('privacy-policy');
+            else if (hash === 'terms-of-service') openModal('terms-of-service');
+        });
+
+        // Active Scroll Navigation Highlights
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) {
+                header.classList.add('bg-zinc-950/95', 'py-1', 'shadow-2xl');
+            } else {
+                header.classList.remove('bg-zinc-950/95', 'py-1', 'shadow-2xl');
+            }
+        });
+
+        // ===== Scroll Animation Observer =====
+        const aosElements = document.querySelectorAll('[data-aos]');
+        if (aosElements.length) {
+            const aosObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const delay = parseInt(el.getAttribute('data-aos-delay')) || 0;
+                        const duration = parseInt(el.getAttribute('data-aos-duration')) || 500;
+                        el.style.transitionDuration = duration + 'ms';
+                        setTimeout(() => el.classList.add('aos-visible'), delay);
+                        aosObserver.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            aosElements.forEach(el => aosObserver.observe(el));
+        }
+    </script>
+</body>
+</html>
