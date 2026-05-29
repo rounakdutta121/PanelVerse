@@ -20,9 +20,6 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Lucide Icons CDN (deferred, not needed for first paint) -->
-    <script src="https://unpkg.com/lucide@latest" defer></script>
-
     <link rel="icon" type="image/png" href="siteimage.png">
     <link rel="apple-touch-icon" href="siteimage.png">
 
@@ -1180,10 +1177,15 @@
         </div>
     </div>
 
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <!-- Interactive JS Script Logic -->
     <script>
         // Start Lucide Icons inside the window
-        lucide.createIcons();
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
 
         // 1. Mobile Hamburger Menu Toggle Action
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -1198,7 +1200,7 @@
                 mobileMenu.classList.remove('hidden');
                 mobileMenuBtn.innerHTML = '<i data-lucide="x" class="w-6 h-6"></i>';
             }
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         });
 
         // Close mobile menu when links are clicked
@@ -1206,7 +1208,7 @@
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
                 mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
-                lucide.createIcons();
+                if (typeof lucide !== 'undefined') lucide.createIcons();
             });
         });
 
@@ -1277,7 +1279,7 @@
             toastTitle.innerText = title;
             toastDesc.innerText = desc;
             toastIcon.setAttribute('data-lucide', iconName);
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
 
             // Slide in animation
             toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
