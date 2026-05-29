@@ -1,0 +1,85 @@
+# PANELVERSE
+> Creative Technology Studio — High-converting landing pages, AI-powered ad creatives, n8n automation systems, email marketing, and modern web development.
+
+## Sections
+
+### Hero
+- **Tagline**: We Build Landing Pages, AI Creatives & Automation Systems That Generate Leads
+- **Subtitle**: Panelverse helps businesses grow through high-converting landing pages, modern websites, AI-powered ad creatives, email marketing systems, and smart workflow automations.
+- **Trust checkpoints**: Fast Delivery, Mobile Optimized, Conversion-Focused Systems, Built for Growth
+- **CTA**: Get Free Proposal (scrolls to #contact), View Services (scrolls to #services)
+
+### Trust Metrics
+- 25+ Projects Delivered
+- 1000+ Hours Automated
+- Fast Turnaround Time
+- Premium Digital Solutions
+
+### Services (6 offerings)
+1. **Landing Pages for Paid Ads** — High-converting pages for Google Ads, Meta Ads, funnel flows. Mobile-first, persuasive copy, real-time analytics.
+2. **Website Development** — Custom-coded sites for corporate, e-commerce, SaaS. SEO-optimized, modern CMS, fully responsive.
+3. **n8n Automation Systems** — Workflow automation for lead syncing, CRM pipelines, notifications, multi-app integrations, WhatsApp alerts.
+4. **Email Marketing Systems** — Newsletters, nurture flows, sales launches. Multi-segment funnel, high deliverability, pro layouts.
+5. **AI Visual Production** — AI-generated ad graphics for Meta, LinkedIn, web. Multi-format scalability, professional design.
+6. **AI Video & Music Production** — Cinematic reels, promos, custom voiceover. Kinetic captions, AI voice gen, rhythmic edits.
+
+### Built for (niches)
+Startups, Local Businesses, Coaches & Consultants, Marketing Agencies, E-commerce Brands, Personal Brands, SaaS Businesses, Real Estate, Content Creators
+
+### Why Panelverse
+- Conversion-Focused Approach
+- AI-Driven Creativity & Automated Logic
+- Data-Driven Decisions & Performance
+
+### What Clients Choose Us For
+- Premium Modern Design
+- Fast Delivery
+- Conversion-Focused
+- Smart Automation
+
+### Testimonials (4 featured)
+1. Rohan Mehta — Founder, FitFuel: leads ↑210% in 30 days
+2. Anjali Sharma — CMO, EduScale: professional, fast, creative
+3. Karan Virk — CEO, BuildRight: n8n saved 20+ hrs/week
+4. Neha Kapoor — Growth Marketer: ROAS improved significantly
+
+### Process (4 steps)
+1. Strategy — research, plan, roadmap
+2. Design — premium UI/UX, layouts, flowcharts
+3. Development — code, databases, CRM, stress-tested
+4. Launch & Scale — deployment, handover, operations
+
+### Contact
+- **Form fields**: Full Name, Work Email, Phone Number, Business Location, Project Details
+- **WhatsApp**: +919815121578
+- **Email**: rounak153d@gmail.com
+- **Location**: Chandigarh, India
+
+### Legal Modals
+- **Privacy Policy** — opens via #privacy-policy hash
+- **Terms of Service** — opens via #terms-of-service hash
+
+## Social Links
+- **Instagram**: https://www.instagram.com/_panelverse
+- **YouTube**: https://www.youtube.com/@PanelVerse01
+- **LinkedIn**: https://www.linkedin.com/in/rounak-dutta-153784321
+
+## Technical Details
+- **Stack**: Vanilla HTML + Tailwind CSS (CDN) + Lucide Icons
+- **Fonts**: Plus Jakarta Sans (body), Cinzel (headings)
+- **Colors**: Brand bg #050507, Gold accent #d4af37, Neon Red #f95738
+- **Analytics**: Google Search Console verification file present
+- **Animations**: Custom scroll-based reveal via IntersectionObserver (`[data-aos]` attributes: fade-up, fade-down, fade-left, fade-right, scale-up, fade-in)
+- **Hosting**: Static site, single-page application with hash-based navigation
+- **Form handler**: Google Apps Script web app
+- **Backgrounds**: Cloudinary-hosted video (hero) and images (services, testimonials, contact sections)
+- **Responsive breakpoints**: Tailwind defaults (sm 640px, md 768px, lg 1024px)
+
+## Files
+- `index.html` — Main landing page (all content in one file including CSS and JS)
+- `sitemap.xml` — XML sitemap for search engines
+- `sitemap.html` — Visual sitemap page
+- `robots.txt` — Crawler instructions
+- `siteimage.png` — Site preview image
+- `googlef2024d0ddf99fba6.html` — Google Search Console verification
+- `.vscode/settings.json` — Editor configuration
